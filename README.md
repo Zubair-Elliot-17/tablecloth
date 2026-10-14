@@ -2,7 +2,11 @@
 
 A website for **Tablecloth**, a fictional wine estate in Constantia, Cape Town. I built it as a portfolio piece.
 
-**Live:** https://tablecloth-sage.vercel.app
+[**Live site**](https://tablecloth-sage.vercel.app) · [**Walkthrough video**](https://tablecloth-sage.vercel.app/docs/walkthrough.mp4) · [**What's on the page**](#whats-on-the-page)
+
+<a href="https://tablecloth-sage.vercel.app/docs/walkthrough.mp4"><img src="docs/walkthrough-poster.jpg" alt="Play the 83-second narrated walkthrough of the Tablecloth site" width="820"></a>
+
+<sub>An 83-second narrated tour of the site and the code behind it. Also in the repo as <a href="docs/walkthrough.mp4">docs/walkthrough.mp4</a>.</sub>
 
 ## Why a wine estate
 
