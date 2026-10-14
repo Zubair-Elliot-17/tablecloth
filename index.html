@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablecloth Wine Estate, Constantia</title>
+<meta name="description" content="Cool-climate wines from the Constantia slopes, cooled every summer afternoon by the cloud the south-easter pours over Table Mountain.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,200..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233E5363'/%3E%3Cpath d='M5 12h22M9 12v7M16 12v11M23 12v6' stroke='%23E6ECEE' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --fog: #E6ECEE;
+  --fog-2: #D3DDE1;
+  --ink: #1C2833;
+  --slate: #3E5363;
+  --vine: #23402F;
+  --protea: #D9899A;
+  --sauv: #C9CF7A;
+  --muted: #56636D;
+  --display: "Anybody", system-ui, sans-serif;
+  --body: "Newsreader", Georgia, serif;
+  --gutter: clamp(16px, 4vw, 56px);
+}
+* { box-sizing: border-box; margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--fog);
+  color: var(--ink);
+  font: 400 1.1875rem/1.6 var(--body);
+  font-optical-sizing: auto;
+  overflow-x: hidden;
+}
+img, svg, canvas { display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--protea); outline-offset: 3px; border-radius: 2px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--fog); padding: 8px 14px; z-index: 50; }
+.skip:focus { left: 8px; }
+.wrap { padding-inline: var(--gutter); max-width: 1320px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: .95; letter-spacing: -.01em; }
+h2 { font-size: clamp(2.6rem, 7vw, 6rem); font-variation-settings: "wdth" 70; }
+.lede { font-size: clamp(1.2rem, 1.8vw, 1.45rem); max-width: 34ch; color: var(--muted); }
+.btn {
+  display: inline-block; font: 600 1rem/1 var(--display); font-variation-settings: "wdth" 110;
+  padding: 15px 22px; border-radius: 999px; background: var(--ink); color: var(--fog);
+  text-decoration: none; border: 0; cursor: pointer; transition: background .2s; white-space: nowrap;
+}
+.btn:hover { background: var(--slate); }
+
+/* nav */
+.nav {
+  position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; gap: 28px;
+  padding: 18px var(--gutter); color: var(--fog); transition: color .3s, background .3s;
+}
+.nav.solid { color: var(--ink); background: color-mix(in srgb, var(--fog) 88%, transparent); backdrop-filter: blur(10px); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 700 1.25rem/1 var(--display); font-variation-settings: "wdth" 125; margin-right: auto; }
+.brand svg { width: 34px; height: 22px; }
+.nav a:not(.brand):not(.btn) { text-decoration: none; font: 500 1rem/1 var(--display); }
+.nav a:not(.brand):not(.btn):hover { text-decoration: underline; text-underline-offset: 5px; }
+.nav .btn { background: var(--fog); color: var(--ink); padding: 11px 18px; }
+.nav.solid .btn { background: var(--ink); color: var(--fog); }
+
+/* hero */
+.hero { position: relative; height: 100svh; min-height: 560px; background: #9FB3BE; overflow: hidden; color: var(--fog); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-copy { position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(28px, 6vh, 64px); display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; }
+.hero h1 { font-size: clamp(3.2rem, 9vw, 8.6rem); font-weight: 700; line-height: .86; }
+.hero h1 .w { display: inline-block; font-variation-settings: "wdth" var(--wd, 100); }
+.hero p { max-width: 30ch; font-size: 1.15rem; line-height: 1.45; }
+.wind-note { position: absolute; top: 88px; right: var(--gutter); font: 500 .95rem/1.3 var(--display); text-align: right; opacity: .85; }
+.wind-note b { display: block; font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* intro */
+.intro { padding-block: clamp(90px, 14vw, 180px); display: grid; grid-template-columns: 1.1fr 1fr; gap: 6vw; align-items: start; }
+.intro h2 { font-variation-settings: "wdth" 62; }
+.intro p + p { margin-top: 1em; }
+.intro .facts { margin-top: 40px; display: grid; grid-template-columns: repeat(3, auto); gap: 8px 36px; justify-content: start; }
+.facts dt { font-size: .95rem; color: var(--muted); }
+.facts dd { font: 700 2rem/1 var(--display); font-variation-settings: "wdth" 80; grid-row: 1; }
+
+/* day */
+.day { position: relative; height: 100svh; min-height: 600px; overflow: hidden; color: var(--fog); background: var(--sky, #7d97a8); }
+.day-inner { position: relative; height: 100%; display: grid; grid-template-columns: 1.15fr 1fr; gap: 4vw; padding-block: 96px 48px; align-items: center; }
+.day-scene { position: absolute; inset: 0; pointer-events: none; }
+.day-scene svg { width: 100%; height: 100%; }
+.day-head { font: 600 1rem/1.3 var(--display); opacity: .85; margin-bottom: 8px; }
+.clock { font: 700 clamp(5rem, 15vw, 13rem)/.85 var(--display); font-variation-settings: "wdth" 60; font-variant-numeric: tabular-nums; }
+.temps { display: flex; gap: 34px; margin-top: 30px; }
+.temp { min-width: 9.5ch; }
+.temp span { display: block; font-size: 1rem; opacity: .85; }
+.temp b { font: 700 3.4rem/1 var(--display); font-variation-settings: "wdth" 75; font-variant-numeric: tabular-nums; }
+.temp i { display: block; height: 6px; border-radius: 3px; margin-top: 10px; background: currentColor; transform-origin: left; transform: scaleX(var(--t, .5)); }
+.temp.vineyard b, .temp.vineyard i { color: var(--sauv); }
+.beats { list-style: none; padding: 0; display: grid; gap: 18px; max-width: 46ch; justify-self: end; }
+.beats li { display: grid; grid-template-columns: 4.2ch 1fr; gap: 14px; opacity: .35; transition: opacity .35s; line-height: 1.4; font-size: 1.05rem; }
+.beats li.on { opacity: 1; }
+.beats time { font: 700 1rem/1.4 var(--display); font-variant-numeric: tabular-nums; }
+
+/* wines */
+.wines { padding-block: clamp(90px, 12vw, 160px); }
+.wines header { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 56px; }
+.wine-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
+.wine { padding: 28px 22px 32px 0; display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px; }
+.wine + .wine { padding-left: 22px; border-left: 1px solid var(--fog-2); }
+.glass { width: 92px; height: 150px; margin-bottom: 10px; }
+.glass .fill { transform: translateY(70px); transition: transform 1.6s cubic-bezier(.3,.7,.2,1) var(--delay, 0s); }
+.wine.poured .glass .fill, .wine:hover .glass .fill { transform: translateY(0); }
+.wine h3 { font-size: 2rem; font-variation-settings: "wdth" 85; }
+.wine .kind { font-style: italic; color: var(--muted); }
+.wine p { font-size: 1.02rem; }
+.wine .price { font: 700 1.15rem/1 var(--display); }
+
+/* visit */
+.visit { background: var(--vine); color: var(--fog); padding-block: clamp(90px, 12vw, 150px); }
+.visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; }
+.visit .lede { color: color-mix(in srgb, var(--fog) 75%, transparent); margin-top: 22px; }
+.hours { margin-top: 40px; display: grid; grid-template-columns: auto 1fr; gap: 6px 24px; font-size: 1.02rem; }
+.hours dt { font-family: var(--display); font-weight: 600; }
+form { display: grid; gap: 22px; }
+fieldset { border: 0; padding: 0; display: grid; gap: 10px; }
+legend, label { font: 600 1rem/1.3 var(--display); margin-bottom: 8px; }
+.option { font: 400 1rem/1.35 var(--body); margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 16px 18px; border: 1.5px solid color-mix(in srgb, var(--fog) 30%, transparent); border-radius: 14px; cursor: pointer; }
+.option:has(input:checked) { border-color: var(--sauv); background: color-mix(in srgb, var(--sauv) 12%, transparent); }
+.option input { accent-color: var(--sauv); width: 18px; height: 18px; }
+.option span { font-size: 1rem; line-height: 1.35; opacity: .85; }
+.option strong { opacity: 1; }
+.option strong { display: block; font-family: var(--display); font-weight: 600; }
+.option em { font: 700 1.05rem/1 var(--display); font-style: normal; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: grid; }
+input[type=text], input[type=email], input[type=date], input[type=number] {
+  font: 400 1.05rem/1.2 var(--body); color: var(--ink); background: var(--fog); border: 2px solid transparent; border-radius: 10px; padding: 13px 14px; width: 100%;
+}
+input:user-invalid { border-color: var(--protea); }
+.err { min-height: 1.3em; font-size: .95rem; color: #F2B8C3; margin-top: 4px; }
+.visit .btn { background: var(--sauv); color: var(--ink); justify-self: start; }
+.visit .btn:hover { background: var(--fog); }
+.demo { font-size: .92rem; opacity: .7; }
+.done { border: 1.5px solid var(--sauv); border-radius: 16px; padding: 32px; }
+.done:focus { outline: none; }
+.done h3 { font-size: 2.4rem; font-variation-settings: "wdth" 80; margin-bottom: 12px; }
+
+footer { padding-block: 56px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 1rem; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .nav a:not(.brand):not(.btn) { display: none; }
+  .hero-copy { grid-template-columns: 1fr; }
+  .wind-note { display: none; }
+  .intro, .visit-grid { grid-template-columns: 1fr; }
+  .day-inner { grid-template-columns: 1fr; align-content: center; gap: 28px; }
+  .beats { justify-self: start; }
+  .beats li:not(.on) { display: none; }
+  .temps { gap: 22px; }
+  .wine-list { grid-template-columns: 1fr 1fr; }
+  .wine:nth-child(3) { padding-left: 0; border-left: 0; }
+  .wine:nth-child(n+3) { border-top: 1px solid var(--fog-2); }
+}
+@media (max-width: 520px) {
+  body { font-size: 1.1rem; }
+  .nav { gap: 12px; }
+  .brand { font-size: 1.1rem; }
+  .nav .btn { padding: 10px 14px; font-size: .92rem; }
+  .wine-list { grid-template-columns: 1fr; }
+  .wine + .wine { padding-left: 0; border-left: 0; border-top: 1px solid var(--fog-2); }
+  .glass { width: 70px; height: 114px; }
+  .row { grid-template-columns: 1fr; }
+  .intro .facts { grid-template-columns: repeat(3, auto); gap: 6px 20px; }
+  .facts dd { font-size: 1.6rem; }
+}
+@media (max-width: 360px) {
+  .brand span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass .fill { transition: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="#top" aria-label="Tablecloth, home">
+    <svg viewBox="0 0 34 22" aria-hidden="true"><path d="M2 6h30M7 6v8M13 6v12M20 6v9M27 6v6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+    <span>Tablecloth</span>
+  </a>
+  <a href="#cloud">The cloud</a>
+  <a href="#wines">Wines</a>
+  <a href="#visit">Visit</a>
+  <a class="btn" href="#visit">Book a tasting</a>
+</nav>
+
+<main id="main">
+  <section class="hero" id="top" aria-label="Introduction">
+    <canvas id="sky" aria-hidden="true"></canvas>
+    <p class="wind-note" aria-hidden="true">South-easter<b id="windSpeed">38 km/h</b>move your cursor to blow</p>
+    <div class="hero-copy">
+      <h1 id="headline" aria-label="Grown under the tablecloth">Grown under the tablecloth</h1>
+      <p>Cool-climate wine from the Constantia slopes, made in the shade of Table Mountain's famous cloud.</p>
+    </div>
+  </section>
+
+  <section class="wrap intro" id="cloud" aria-labelledby="introTitle">
+    <h2 id="introTitle">The wind does half the work</h2>
+    <div>
+      <p class="lede">Most summer afternoons, the south-easter drags a cloud over Table Mountain. Capetonians call it the tablecloth.</p>
+      <p>From the city it looks like a postcard. From our rows on the far side of the ridge it's a cold front that arrives at two o'clock and stays until dark. Our grapes ripen slowly, keep their acidity, and taste of the place they grew.</p>
+      <dl class="facts">
+        <dt>Planted</dt><dd>1891</dd>
+        <dt>Hectares</dt><dd>34</dd>
+        <dt>Cooler than town</dt><dd>&minus;7&deg;</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="day" id="day" aria-labelledby="dayTitle">
+    <div class="day-scene" aria-hidden="true">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+        <defs><filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14"/></filter></defs>
+        <circle id="sun" cx="200" cy="760" r="32" fill="#F6E9B8" opacity=".6"/>
+        <path d="M0 770 L160 700 L260 575 L320 610 L420 582 L1150 578 L1230 655 L1310 668 L1380 612 L1430 610 L1490 660 L1600 710 V900 H0Z" fill="#3E5363" opacity=".8"/>
+        <g id="dayCloud" opacity="0" filter="url(#soft)" fill="#F3F6F7">
+          <ellipse cx="785" cy="572" rx="390" ry="26"/>
+          <path d="M410 580 Q460 650 480 690 Q560 630 620 680 Q700 620 760 700 Q840 630 920 680 Q1000 620 1060 690 Q1110 640 1160 580Z" opacity=".75"/>
+        </g>
+        <path d="M0 810 Q400 770 800 800 T1600 790 V900 H0Z" fill="#23402F"/>
+      </svg>
+    </div>
+    <div class="wrap day-inner">
+      <div>
+        <h2 class="day-head" id="dayTitle">A February day, same mountain, two temperatures</h2>
+        <p class="clock" aria-live="off"><span id="clock">06:00</span></p>
+        <div class="temps">
+          <div class="temp"><span>City Bowl</span><b id="tCity">19&deg;</b><i id="bCity"></i></div>
+          <div class="temp vineyard"><span>Our rows</span><b id="tVine">18&deg;</b><i id="bVine"></i></div>
+        </div>
+      </div>
+      <ol class="beats" id="beats">
+        <li data-h="6"><time>06:00</time><span>Mist in the low rows. Picking starts by headlamp.</span></li>
+        <li data-h="10"><time>10:00</time><span>Heat builds on both sides of the mountain. The city heads for the beach.</span></li>
+        <li data-h="13.5"><time>13:30</time><span>The south-easter arrives. The cloud spills over the ridge and slides down toward the vines.</span></li>
+        <li data-h="16"><time>16:00</time><span>Town peaks at 31&deg;. Under the cloud we're at 22&deg; and falling.</span></li>
+        <li data-h="18.5"><time>18:30</time><span>Cool air settles in the vineyard for the night. The grapes keep their acidity.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="wrap wines" id="wines" aria-labelledby="winesTitle">
+    <header>
+      <h2 id="winesTitle">Four wines, one cloud</h2>
+      <p class="lede">Small runs, all from our own vines, all poured at the cellar door.</p>
+    </header>
+    <ul class="wine-list">
+      <li class="wine" style="--wine:#E5DE93;--delay:0s">
+        <svg class="glass" viewBox="0 0 92 150" aria-hidden="true"><defs><clipPath id="b1"><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z"/></clipPath></defs><g clip-path="url(#b1)"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Southeaster</h3>
+        <p class="kind">Sauvignon blanc, 2025</p>
+        <p>Picked on cloud days only. Green fig, wet stone and a sharp finish that wakes you up.</p>
+        <p class="price">R210</p>
+      </li>
+      <li class="wine" style="--wine:#D9C27A;--delay:.15s">
+        <svg class="glass" viewBox="0 0 92 150" aria-hidden="true"><defs><clipPath id="b2"><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z"/></clipPath></defs><g clip-path="url(#b2)"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Fog Line</h3>
+        <p class="kind">S&eacute;millon, 2023</p>
+        <p>From the 1950s block right where the cloud stops. Waxy lemon, beeswax and a long, quiet finish.</p>
+        <p class="price">R340</p>
+      </li>
+      <li class="wine" style="--wine:#8E2F3C;--delay:.3s">
+        <svg class="glass" viewBox="0 0 92 150" aria-hidden="true"><defs><clipPath id="b3"><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z"/></clipPath></defs><g clip-path="url(#b3)"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Back Table</h3>
+        <p class="kind">Pinot noir, 2024</p>
+        <p>Grown on the steep south slope that sees the least sun. Sour cherry, fynbos and soft tannins.</p>
+        <p class="price">R395</p>
+      </li>
+      <li class="wine" style="--wine:#C8892E;--delay:.45s">
+        <svg class="glass" viewBox="0 0 92 150" aria-hidden="true"><defs><clipPath id="b4"><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z"/></clipPath></defs><g clip-path="url(#b4)"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>St Helena</h3>
+        <p class="kind">Natural sweet Muscat, 2021, 375&nbsp;ml</p>
+        <p>Named for the island where Napoleon kept asking for Constantia wine. Apricot, orange peel and honey.</p>
+        <p class="price">R620</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="visit" id="visit" aria-labelledby="visitTitle">
+    <div class="wrap visit-grid">
+      <div>
+        <h2 id="visitTitle">Come for a tasting</h2>
+        <p class="lede">Twenty-five minutes from the city, on the cool side of the mountain. Book ahead on weekends.</p>
+        <dl class="hours">
+          <dt>Tue&ndash;Sun</dt><dd>10:00 to 17:00</dd>
+          <dt>Mondays</dt><dd>Closed, the vines need us</dd>
+          <dt>Find us</dt><dd>Tafelkleed Lane, Constantia, Cape Town</dd>
+        </dl>
+      </div>
+      <div id="bookingArea">
+        <form id="booking" novalidate>
+          <fieldset>
+            <legend>Choose a tasting</legend>
+            <label class="option"><input type="radio" name="tasting" value="Cellar tasting" required checked><span><strong>Cellar tasting</strong>All four wines, 45 minutes</span><em>R180</em></label>
+            <label class="option"><input type="radio" name="tasting" value="Under the cloud walk"><span><strong>Under the cloud walk</strong>Vineyard walk with the winemaker, then the tasting</span><em>R420</em></label>
+            <label class="option"><input type="radio" name="tasting" value="Long table lunch"><span><strong>Long table lunch</strong>Three courses between the rows, wine paired</span><em>R890</em></label>
+          </fieldset>
+          <div class="row">
+            <div class="field"><label for="date">Date</label><input type="date" id="date" name="date" required aria-describedby="dateErr"><p class="err" id="dateErr" aria-live="polite"></p></div>
+            <div class="field"><label for="guests">Guests</label><input type="number" id="guests" name="guests" min="1" max="12" value="2" required inputmode="numeric" aria-describedby="guestsErr"><p class="err" id="guestsErr" aria-live="polite"></p></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="name">Name</label><input type="text" id="name" name="name" autocomplete="name" required aria-describedby="nameErr"><p class="err" id="nameErr" aria-live="polite"></p></div>
+            <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required aria-describedby="emailErr"><p class="err" id="emailErr" aria-live="polite"></p></div>
+          </div>
+          <button class="btn" type="submit">Book tasting</button>
+          <p class="demo">Tablecloth is a fictional estate. Booking runs in your browser only and nothing is sent.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>Tablecloth Wine Estate, Constantia. A fictional estate made for a portfolio.</span>
+  <span>Please enjoy responsibly. Not for sale to persons under 18.</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script>
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp01 = v => Math.min(1, Math.max(0, v));
+
+// ---------- smooth scroll ----------
+gsap.registerPlugin(ScrollTrigger);
+if (!reduced && window.Lenis) {
+  const lenis = new Lenis({ lerp: .1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const el = document.querySelector(a.getAttribute('href'));
+    if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: 0 }); }
+  }));
+}
+
+// nav turns solid once the hero is gone
+const nav = document.querySelector('.nav');
+ScrollTrigger.create({ trigger: '.hero', start: 'bottom 70px', onEnter: () => nav.classList.add('solid'), onLeaveBack: () => nav.classList.remove('solid') });
+
+// ---------- hero: mountain + pouring cloud ----------
+const canvas = document.getElementById('sky');
+const ctx = canvas.getContext('2d');
+// Table Mountain from the city: Devil's Peak, the flat table, Lion's Head. x 0..1, y as fraction of height.
+const RIDGE = [[0,.64],[.06,.56],[.12,.43],[.17,.31],[.21,.35],[.25,.38],[.29,.36],[.70,.355],[.74,.45],[.78,.53],[.82,.51],[.845,.45],[.865,.415],[.89,.41],[.91,.46],[.95,.58],[1,.65]];
+const TOP_L = .29, TOP_R = .70, TOP_Y = .358, BASE = .80;
+let W, H, dpr, sx, particles = [], blob;
+const pointer = { x: -1e4, y: -1e4, vx: 0, vy: 0, t: 0 };
+let wind = 0; // smoothed cursor speed, drives the headline width
+
+function makeBlob() {
+  blob = document.createElement('canvas');
+  blob.width = blob.height = 128;
+  const b = blob.getContext('2d');
+  const g = b.createRadialGradient(64, 64, 0, 64, 64, 64);
+  g.addColorStop(0, 'rgba(246,248,249,1)');
+  g.addColorStop(.45, 'rgba(242,246,247,.8)');
+  g.addColorStop(1, 'rgba(236,241,243,0)');
+  b.fillStyle = g; b.fillRect(0, 0, 128, 128);
+}
+// portrait screens crop to the table itself
+const X = x => (x - .5) * sx * W + W / 2;
+function resize() {
+  dpr = Math.min(devicePixelRatio || 1, 2);
+  W = canvas.clientWidth; H = canvas.clientHeight;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  sx = W / H < 1 ? 1.5 : W / H < 1.4 ? 1.25 : 1;
+  const n = W < 700 ? 220 : 420;
+  particles = Array.from({ length: n }, () => spawn(true));
+}
+function spawn(scatter) {
+  // denser in the middle of the table, thinning toward the edges
+  const x = lerp(TOP_L - .02, TOP_R + .02, (Math.random() + Math.random() + Math.random()) / 3);
+  const p = { x: X(x), y: TOP_Y * H - Math.random() * 10, vx: (Math.random() - .5) * .25, vy: Math.random() * .15, r: lerp(36, 80, Math.random()) * (W < 700 ? .7 : 1), a: 0, age: 0, rest: lerp(40, 260, Math.random()), max: lerp(.5, 1.6, Math.random() ** 2) };
+  if (scatter) { p.age = Math.random() * 600; p.y += Math.random() ** 2 * .3 * H; p.a = .6; }
+  return p;
+}
+function drawMountain() {
+  const sky = ctx.createLinearGradient(0, 0, 0, H);
+  sky.addColorStop(0, '#7E9AAD'); sky.addColorStop(.55, '#B9C9D1'); sky.addColorStop(1, '#D9E2E6');
+  ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+  // mountain face, lighter where the afternoon light hits
+  const face = ctx.createLinearGradient(0, TOP_Y * H, 0, BASE * H);
+  face.addColorStop(0, '#4E6575'); face.addColorStop(1, '#2F4150');
+  ctx.beginPath(); ctx.moveTo(X(RIDGE[0][0]) - W, RIDGE[0][1] * H);
+  RIDGE.forEach(([x, y]) => ctx.lineTo(X(x), y * H));
+  ctx.lineTo(X(1) + W, RIDGE.at(-1)[1] * H); ctx.lineTo(X(1) + W, H); ctx.lineTo(X(0) - W, H); ctx.closePath();
+  ctx.fillStyle = face; ctx.fill();
+}
+function drawVines() {
+  // our rows in the foreground, running away toward the mountain
+  const top = BASE * H - 8;
+  ctx.fillStyle = '#23402F'; ctx.beginPath();
+  ctx.moveTo(0, top + 20); ctx.quadraticCurveTo(W * .5, top - 18, W, top + 10); ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.fill();
+  ctx.strokeStyle = 'rgba(201,207,122,.22)'; ctx.lineWidth = 1;
+  const vx = W * .52, vy = top - 60;
+  for (let i = -18; i <= 18; i++) {
+    ctx.beginPath(); ctx.moveTo(lerp(vx, W / 2 + i * W * .09, .1), lerp(vy, H, .1) + 12); ctx.lineTo(W / 2 + i * W * .09, H); ctx.stroke();
+  }
+}
+function step() {
+  const fall = (BASE - TOP_Y) * H;
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    p.age++;
+    // rest on the table first, then pour over the edge toward the viewer
+    if (p.age > p.rest) p.vy += .012;
+    p.vy = Math.min(p.vy, p.max);
+    const dx = p.x - pointer.x, dy = p.y - pointer.y, d2 = dx * dx + dy * dy;
+    if (d2 < 180 * 180) { const f = 1 - Math.sqrt(d2) / 180; p.vx += pointer.vx * .03 * f; p.vy += pointer.vy * .03 * f; }
+    p.vx *= .985;
+    p.x += p.vx; p.y += p.vy;
+    const drop = (p.y - TOP_Y * H) / fall; // cloud evaporates as it sinks into warmer air
+    const target = drop < 0 ? 1 : clamp01(1 - drop * 2.2);
+    p.a = Math.min(target, p.a + .02);
+    if (drop > .5 || p.a <= 0 && p.age > 60 || p.x < -200 || p.x > W + 200) particles[i] = spawn(false);
+  }
+}
+function render() {
+  drawMountain();
+  for (const p of particles) {
+    ctx.globalAlpha = p.a * .55;
+    // faster particles stretch into streaks, like the cloud sliding down the face
+    const h = p.r * (.8 + p.vy * .9);
+    ctx.drawImage(blob, p.x - p.r, p.y - h / 2, p.r * 2, h);
+  }
+  ctx.globalAlpha = 1;
+  drawVines();
+}
+
+const headline = document.getElementById('headline');
+headline.innerHTML = headline.textContent.split(' ').map(w => `<span class="w" aria-hidden="true">${w}</span>`).join(' ');
+const words = [...headline.querySelectorAll('.w')];
+const windOut = document.getElementById('windSpeed');
+
+let running = true, frame = 0;
+function tick() {
+  if (running) {
+    step(); render();
+    pointer.vx *= .9; pointer.vy *= .9;
+    wind = lerp(wind, Math.min(Math.hypot(pointer.vx, pointer.vy) / 30, 1), .08);
+    if (!introPlaying) words.forEach((w, i) => w.style.setProperty('--wd', (100 + wind * (30 + i * 6)).toFixed(1)));
+    if (++frame % 12 === 0) windOut.textContent = Math.round(38 + wind * 40) + ' km/h';
+  }
+  requestAnimationFrame(tick);
+}
+addEventListener('pointermove', e => {
+  const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+  if (pointer.t) { pointer.vx = lerp(pointer.vx, x - pointer.x, .5); pointer.vy = lerp(pointer.vy, y - pointer.y, .5); }
+  pointer.x = x; pointer.y = y; pointer.t = 1;
+}, { passive: true });
+new IntersectionObserver(([e]) => { running = e.isIntersecting && !reduced; }).observe(canvas);
+addEventListener('resize', () => { resize(); if (reduced) settle(); });
+// reduced motion: simulate once, draw a still frame
+function settle() { for (let i = 0; i < 400; i++) step(); render(); }
+
+makeBlob(); resize();
+let introPlaying = !reduced;
+if (reduced) settle();
+else {
+  // the one load moment: the headline is squeezed thin, then the wind fills it out
+  gsap.fromTo(words, { '--wd': 50, opacity: 0 }, { '--wd': 100, opacity: 1, duration: 1.6, ease: 'expo.out', stagger: .12, delay: .2, onComplete: () => { introPlaying = false; } });
+}
+tick();
+
+// ---------- a February day ----------
+const CITY = [19,21,23,25,27,28,30,31,31,31,30,28,26,24,22];
+const VINE = [18,20,22,24,25,26,27,26,23,22,21,20,19,18,17];
+const SKY = [[6,'#C7A9A6'],[8,'#8FA9BA'],[12,'#6F95B0'],[14,'#9AAAB3'],[17,'#8796A1'],[19,'#B8877A'],[20,'#4B5463']];
+const hexMix = (a, b, t) => '#' + [1,3,5].map(i => Math.round(lerp(parseInt(a.substr(i,2),16), parseInt(b.substr(i,2),16), t)).toString(16).padStart(2,'0')).join('');
+const at = (arr, h) => { const i = Math.min(Math.floor(h - 6), arr.length - 2), t = h - 6 - i; return lerp(arr[i], arr[i + 1], t); };
+const day = document.getElementById('day'), clockEl = document.getElementById('clock');
+const tCity = document.getElementById('tCity'), tVine = document.getElementById('tVine');
+const bCity = document.getElementById('bCity'), bVine = document.getElementById('bVine');
+const sun = document.getElementById('sun'), dayCloud = document.getElementById('dayCloud');
+const beats = [...document.querySelectorAll('#beats li')];
+function setHour(h) {
+  const hh = Math.floor(h), mm = Math.floor((h - hh) * 60 / 10) * 10;
+  clockEl.textContent = String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0');
+  const c = at(CITY, h), v = at(VINE, h);
+  tCity.textContent = Math.round(c) + '°'; tVine.textContent = Math.round(v) + '°';
+  bCity.style.setProperty('--t', (c - 12) / 22); bVine.style.setProperty('--t', (v - 12) / 22);
+  let k = SKY.findIndex(([sh]) => sh > h); if (k < 1) k = k === 0 ? 1 : SKY.length - 1;
+  const [h0, c0] = SKY[k - 1], [h1, c1] = SKY[k];
+  day.style.setProperty('--sky', hexMix(c0, c1, clamp01((h - h0) / (h1 - h0))));
+  const s = (h - 6) / 14; // sun arcs left to right
+  sun.setAttribute('cx', lerp(120, 1480, s)); sun.setAttribute('cy', 760 - Math.sin(s * Math.PI) * 520);
+  dayCloud.setAttribute('opacity', clamp01((h - 13.3) / 1.4) * .95);
+  let on = 0; beats.forEach((b, i) => { if (h >= +b.dataset.h) on = i; });
+  beats.forEach((b, i) => b.classList.toggle('on', i === on));
+}
+setHour(6);
+ScrollTrigger.create({ trigger: day, start: 'top top', end: '+=260%', pin: true, scrub: true, onUpdate: s => setHour(6 + s.progress * 14) });
+
+// ---------- wines pour when they come into view ----------
+const pourIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('poured'); pourIO.unobserve(e.target); } }), { threshold: .5 });
+document.querySelectorAll('.wine').forEach(w => pourIO.observe(w));
+
+// ---------- booking (client-side only) ----------
+const form = document.getElementById('booking'), dateIn = form.date;
+const iso = d => d.toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
+const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+const maxDate = new Date(); maxDate.setDate(maxDate.getDate() + 180);
+dateIn.min = iso(tomorrow); dateIn.max = iso(maxDate);
+function check(input) {
+  let msg = '';
+  const v = input.value.trim();
+  if (input === dateIn) {
+    if (!v) msg = 'Pick a date.';
+    else if (v < dateIn.min || v > dateIn.max) msg = 'Choose a date from tomorrow up to six months ahead.';
+    else if (new Date(v + 'T12:00').getDay() === 1) msg = "We're closed on Mondays. Try Tuesday.";
+  } else if (input.name === 'guests') {
+    const n = Number(v);
+    if (!Number.isInteger(n) || n < 1 || n > 12) msg = 'Book for 1 to 12 guests. For bigger groups, call the cellar.';
+  } else if (input.name === 'name') {
+    if (!v) msg = 'Add the name for the booking.';
+  } else if (input.name === 'email') {
+    if (!v) msg = 'Add an email for the confirmation.';
+    else if (!input.checkValidity()) msg = 'Check the email address, it looks incomplete.';
+  }
+  input.setCustomValidity(msg);
+  document.getElementById(input.id + 'Err').textContent = msg;
+  input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  return !msg;
+}
+const fields = [dateIn, form.guests, form.name, form.email];
+fields.forEach(f => f.addEventListener('blur', () => f.value && check(f)));
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  fields.forEach(f => f.setCustomValidity(''));
+  const bad = fields.filter(f => !check(f));
+  if (bad.length) { bad[0].focus(); return; }
+  const when = new Date(dateIn.value + 'T12:00').toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long' });
+  const guests = Number(form.guests.value);
+  const area = document.getElementById('bookingArea');
+  const done = document.createElement('div');
+  done.className = 'done'; done.tabIndex = -1; done.setAttribute('role', 'status');
+  const h = document.createElement('h3'); h.textContent = 'Tasting booked';
+  const p = document.createElement('p');
+  p.textContent = `${form.tasting.value} for ${guests} ${guests === 1 ? 'guest' : 'guests'} on ${when}. If the tablecloth is on the mountain, bring a jersey.`;
+  const note = document.createElement('p'); note.className = 'demo'; note.style.marginTop = '14px';
+  note.textContent = 'Demo only: no email was sent and nothing was stored.';
+  done.append(h, p, note);
+  area.replaceChildren(done); done.focus();
+});
+</script>
+</body>
+</html>
