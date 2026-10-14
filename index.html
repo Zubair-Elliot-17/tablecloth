@@ -160,9 +160,9 @@ input:user-invalid { border-color: var(--protea); }
 .steps p { font-size: 1.02rem; }
 
 /* vineyard map */
-.vineyard { background: #DCE3D8; padding-block: clamp(90px, 12vw, 150px); }
-.vineyard header { display: grid; grid-template-columns: 1.1fr 1fr; gap: 6vw; align-items: end; margin-bottom: 48px; }
-.vineyard h2 { font-variation-settings: "wdth" 62; }
+.estate { background: #DCE3D8; padding-block: clamp(90px, 12vw, 150px); }
+.estate header { display: grid; grid-template-columns: 1.1fr 1fr; gap: 6vw; align-items: end; margin-bottom: 48px; }
+.estate h2 { font-variation-settings: "wdth" 62; }
 .vy-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 4vw; align-items: start; }
 .map { margin: 0; }
 .map svg { width: 100%; height: auto; border-radius: 18px; background: #E9EDE3; --rows: 1; }
@@ -204,7 +204,7 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
   .beats li:not(.on) { opacity: 0; }
   .temps { gap: 22px; }
   .wine-list { grid-template-columns: 1fr 1fr; }
-  .about-head, .vineyard header, .vy-grid { grid-template-columns: 1fr; }
+  .about-head, .estate header, .vy-grid { grid-template-columns: 1fr; }
   .about-head { gap: 20px; }
   .steps { grid-template-columns: 1fr 1fr; }
   .steps li:nth-child(3) { padding-left: 0; border-left: 0; }
@@ -325,7 +325,7 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
     </div>
   </section>
 
-  <section class="vineyard" id="vineyard" aria-labelledby="vineyardTitle">
+  <section class="estate" id="vineyard" aria-labelledby="vineyardTitle">
     <div class="wrap">
       <header>
         <h2 id="vineyardTitle">Every grape comes from this slope</h2>
