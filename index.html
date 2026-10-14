@@ -64,8 +64,9 @@ h2 { font-size: clamp(2.6rem, 7vw, 6rem); font-variation-settings: "wdth" 70; }
 /* hero */
 .hero { position: relative; height: 100svh; min-height: 560px; background: #9FB3BE; overflow: hidden; color: var(--fog); }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-copy { position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(28px, 6vh, 64px); display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; }
-.hero h1 { font-size: clamp(3.2rem, 9vw, 8.6rem); font-weight: 700; line-height: .86; }
+.hero-copy { position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(28px, 6vh, 64px); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px; }
+.hero h1 { font-size: clamp(3.2rem, 8vw, 7.8rem); font-weight: 700; line-height: .86; }
+.hero h1 .line { display: block; width: max-content; white-space: nowrap; }
 .hero h1 .w { display: inline-block; font-variation-settings: "wdth" var(--wd, 100); }
 .hero p { max-width: 30ch; font-size: 1.15rem; line-height: 1.45; }
 .wind-note { position: absolute; top: 88px; right: var(--gutter); font: 500 .95rem/1.3 var(--display); text-align: right; opacity: .85; }
@@ -443,8 +444,28 @@ function render() {
 }
 
 const headline = document.getElementById('headline');
-headline.innerHTML = headline.textContent.split(' ').map(w => `<span class="w" aria-hidden="true">${w}</span>`).join(' ');
-const words = [...headline.querySelectorAll('.w')];
+const headText = headline.textContent;
+let words = [], lines = [], room = [];
+// Lock the line breaks at normal width, then let each line widen only as far as it fits,
+// so the wind never re-wraps the headline (that re-wrap made it jump on hover).
+function layoutHeadline() {
+  const html = ws => ws.map(w => `<span class="w">${w}</span>`).join(' ');
+  headline.innerHTML = html(headText.split(' '));
+  const groups = [];
+  headline.querySelectorAll('.w').forEach(w => {
+    const g = groups.at(-1);
+    if (g && Math.abs(g.top - w.offsetTop) < 4) g.words.push(w.textContent); else groups.push({ top: w.offsetTop, words: [w.textContent] });
+  });
+  headline.innerHTML = groups.map(g => `<span class="line" aria-hidden="true">${html(g.words)}</span>`).join('');
+  lines = [...headline.querySelectorAll('.line')];
+  words = [...headline.querySelectorAll('.w')];
+  const avail = headline.clientWidth;
+  room = lines.map(l => {
+    const w100 = l.offsetWidth;
+    l.style.setProperty('--wd', 150); const w150 = l.offsetWidth; l.style.removeProperty('--wd');
+    return Math.max(0, Math.min(40, 50 * (avail - w100) / Math.max(1, w150 - w100)));
+  });
+}
 const windOut = document.getElementById('windSpeed');
 
 let running = true, frame = 0;
@@ -453,7 +474,7 @@ function tick() {
     step(); render();
     pointer.vx *= .9; pointer.vy *= .9;
     wind = lerp(wind, Math.min(Math.hypot(pointer.vx, pointer.vy) / 30, 1), .08);
-    if (!introPlaying) words.forEach((w, i) => w.style.setProperty('--wd', (100 + wind * (30 + i * 6)).toFixed(1)));
+    if (!introPlaying) lines.forEach((l, i) => l.style.setProperty('--wd', (100 + wind * room[i]).toFixed(1)));
     if (++frame % 12 === 0) windOut.textContent = Math.round(38 + wind * 40) + ' km/h';
   }
   requestAnimationFrame(tick);
@@ -464,17 +485,28 @@ addEventListener('pointermove', e => {
   pointer.x = x; pointer.y = y; pointer.t = 1;
 }, { passive: true });
 new IntersectionObserver(([e]) => { running = e.isIntersecting && !reduced; }).observe(canvas);
-addEventListener('resize', () => { resize(); if (reduced) settle(); });
+addEventListener('resize', () => {
+  resize(); if (reduced) settle();
+  if (!introPlaying) layoutHeadline();
+});
 // reduced motion: simulate once, draw a still frame
 function settle() { for (let i = 0; i < 400; i++) step(); render(); }
 
 makeBlob(); resize();
 let introPlaying = !reduced;
 if (reduced) settle();
-else {
+else headline.style.opacity = 0; // hidden until the font has loaded and the lines are measured
+document.fonts.ready.then(() => {
+  layoutHeadline();
+  if (reduced) return;
+  headline.style.opacity = '';
   // the one load moment: the headline is squeezed thin, then the wind fills it out
-  gsap.fromTo(words, { '--wd': 50, opacity: 0 }, { '--wd': 100, opacity: 1, duration: 1.6, ease: 'expo.out', stagger: .12, delay: .2, onComplete: () => { introPlaying = false; } });
-}
+  gsap.fromTo(words, { '--wd': 50, opacity: 0 }, { '--wd': 100, opacity: 1, duration: 1.6, ease: 'expo.out', stagger: .12, delay: .2, onComplete: () => {
+    // hand the width back to the lines so the wind can drive it
+    words.forEach(w => { w.style.removeProperty('--wd'); w.style.removeProperty('opacity'); });
+    introPlaying = false;
+  } });
+});
 tick();
 
 // ---------- a February day ----------
