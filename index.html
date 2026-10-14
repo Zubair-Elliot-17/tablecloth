@@ -339,7 +339,11 @@ if (!reduced && window.Lenis) {
   gsap.ticker.lagSmoothing(0);
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const el = document.querySelector(a.getAttribute('href'));
-    if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: 0 }); }
+    if (!el) return;
+    e.preventDefault();
+    // Jump behind a crossfade so sections in between don't play their animations on the way past.
+    const jump = () => lenis.scrollTo(el, { immediate: true, force: true });
+    document.startViewTransition ? document.startViewTransition(jump) : jump();
   }));
 }
 
