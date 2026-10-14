@@ -105,10 +105,14 @@ h2 { font-size: clamp(2.6rem, 7vw, 6rem); font-variation-settings: "wdth" 70; }
 .wine-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
 .wine { padding: 28px 22px 32px 0; display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px; }
 .wine + .wine { padding-left: 22px; border-left: 1px solid var(--fog-2); }
-.glass { width: 92px; height: 150px; margin-bottom: 10px; }
-.glass .fill { transform: translateY(70px); transition: transform 1.6s cubic-bezier(.3,.7,.2,1) var(--delay, 0s); }
-.wine.poured .glass .fill { transform: translateY(0); }
-@media (hover: hover) { .wine:hover .glass .fill { transform: translateY(0); } }
+.pour {
+  display: grid; justify-items: start; gap: 6px; margin-bottom: 10px; padding: 0; border: 0; background: none; color: inherit;
+  font: 500 .95rem/1.2 var(--display); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+  -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
+}
+.pour:active { cursor: grabbing; }
+.pour .hint { color: var(--muted); }
+.glass { width: 110px; height: 183px; }
 .wine h3 { font-size: 2rem; font-variation-settings: "wdth" 85; }
 .wine .kind { font-style: italic; color: var(--muted); }
 .wine p { font-size: 1.02rem; }
@@ -172,16 +176,13 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
   .nav .btn { padding: 10px 14px; font-size: .92rem; }
   .wine-list { grid-template-columns: 1fr; }
   .wine + .wine { padding-left: 0; border-left: 0; border-top: 1px solid var(--fog-2); }
-  .glass { width: 70px; height: 114px; }
+  .glass { width: 88px; height: 146px; }
   .row { grid-template-columns: 1fr; }
   .intro .facts { grid-template-columns: repeat(3, auto); gap: 6px 20px; }
   .facts dd { font-size: 1.6rem; }
 }
 @media (max-width: 360px) {
   .brand span { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .glass .fill { transition: none; }
 }
 </style>
 </head>
@@ -260,29 +261,29 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
       <p class="lede">Small runs, all from our own vines, all poured at the cellar door.</p>
     </header>
     <ul class="wine-list">
-      <li class="wine" style="--wine:#E5DE93;--delay:0s">
-        <svg class="glass" viewBox="0 0 92 150" aria-hidden="true"><defs><clipPath id="b1"><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z"/></clipPath></defs><g clip-path="url(#b1)"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <li class="wine" style="--wine:#E5DE93">
+        <button class="pour" type="button"></button>
         <h3>Southeaster</h3>
         <p class="kind">Sauvignon blanc, 2025</p>
         <p>Picked on cloud days only. Green fig, wet stone and a sharp finish that wakes you up.</p>
         <p class="price">R210</p>
       </li>
-      <li class="wine" style="--wine:#D9C27A;--delay:.15s">
-        <svg class="glass" viewBox="0 0 92 150" aria-hidden="true"><defs><clipPath id="b2"><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z"/></clipPath></defs><g clip-path="url(#b2)"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <li class="wine" style="--wine:#D9C27A">
+        <button class="pour" type="button"></button>
         <h3>Fog Line</h3>
         <p class="kind">S&eacute;millon, 2023</p>
         <p>From the 1950s block right where the cloud stops. Waxy lemon, beeswax and a long, quiet finish.</p>
         <p class="price">R340</p>
       </li>
-      <li class="wine" style="--wine:#8E2F3C;--delay:.3s">
-        <svg class="glass" viewBox="0 0 92 150" aria-hidden="true"><defs><clipPath id="b3"><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z"/></clipPath></defs><g clip-path="url(#b3)"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <li class="wine" style="--wine:#8E2F3C">
+        <button class="pour" type="button"></button>
         <h3>Back Table</h3>
         <p class="kind">Pinot noir, 2024</p>
         <p>Grown on the steep south slope that sees the least sun. Sour cherry, fynbos and soft tannins.</p>
         <p class="price">R395</p>
       </li>
-      <li class="wine" style="--wine:#C8892E;--delay:.45s">
-        <svg class="glass" viewBox="0 0 92 150" aria-hidden="true"><defs><clipPath id="b4"><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z"/></clipPath></defs><g clip-path="url(#b4)"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g><path d="M14 8 H78 Q82 58 46 82 Q10 58 14 8Z M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <li class="wine" style="--wine:#C8892E">
+        <button class="pour" type="button"></button>
         <h3>St Helena</h3>
         <p class="kind">Natural sweet Muscat, 2021, 375&nbsp;ml</p>
         <p>Named for the island where Napoleon kept asking for Constantia wine. Apricot, orange peel and honey.</p>
@@ -565,9 +566,56 @@ layoutSun(); setHour(6);
 addEventListener('resize', () => { layoutSun(); setHour(lastHour); });
 ScrollTrigger.create({ trigger: day, start: 'top top', end: '+=260%', pin: true, scrub: true, onUpdate: s => setHour(6 + s.progress * 14) });
 
-// ---------- wines pour when they come into view ----------
-const pourIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('poured'); pourIO.unobserve(e.target); } }), { threshold: .5 });
-document.querySelectorAll('.wine').forEach(w => pourIO.observe(w));
+// ---------- wines: hold a glass to pour it, tap a full one to empty it ----------
+const BOWL = 'M14 8 H78 Q82 58 46 82 Q10 58 14 8Z';
+document.querySelectorAll('.wine').forEach((wine, i) => {
+  const btn = wine.querySelector('.pour'), name = wine.querySelector('h3').textContent;
+  btn.innerHTML = `<svg class="glass" viewBox="0 -76 136 226" aria-hidden="true">
+    <defs><clipPath id="bowl${i}"><path d="${BOWL}"/></clipPath></defs>
+    <g clip-path="url(#bowl${i})"><rect class="fill" x="0" y="38" width="92" height="60" fill="var(--wine)"/></g>
+    <line class="stream" stroke="var(--wine)" stroke-width="3.5" stroke-linecap="round" opacity="0"/>
+    <path d="${BOWL} M46 82 V136 M26 140 H66" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <g class="bottle"><g class="tilt">
+      <path d="M-4 0 H4 V18 Q11 24 11 34 V84 H-11 V34 Q-11 24 -4 18Z" fill="#23402F" stroke="currentColor" stroke-width="1.5"/>
+      <rect x="-11" y="46" width="22" height="22" fill="var(--wine)"/>
+    </g></g></svg><span class="hint"></span>`;
+  const fill = btn.querySelector('.fill'), stream = btn.querySelector('.stream'), hint = btn.querySelector('.hint');
+  const bottle = btn.querySelector('.bottle'), tilt = btn.querySelector('.tilt');
+  // mode: idle, pour (while held), auto (fills to the top, for assistive tech), drain
+  let level = 0, lift = 0, mode = 'idle', last = 0, raf = 0;
+  const label = () => {
+    const full = level >= 1;
+    hint.textContent = full ? 'Cheers. Tap to empty' : mode === 'pour' || mode === 'auto' ? 'Pouring…' : level > 0 ? 'Hold to pour more' : 'Hold to pour';
+    btn.setAttribute('aria-label', full ? `Glass of ${name} poured. Press to empty it` : `Pour a glass of ${name}`);
+  };
+  function frame(t) {
+    const dt = Math.min(.05, (t - last) / 1000); last = t;
+    const pouring = (mode === 'pour' || mode === 'auto') && lift > .85;
+    if (pouring) level = Math.min(1, level + dt / 1.8);
+    if (mode === 'drain') level = Math.max(0, level - dt / .7);
+    if ((pouring && level >= 1) || (mode === 'drain' && level <= 0)) { mode = 'idle'; label(); }
+    lift = lerp(lift, mode === 'pour' || mode === 'auto' ? 1 : 0, reduced ? 1 : .18);
+    // the bottle stands beside the glass, then lifts and tips its mouth over the bowl
+    const mx = lerp(112, 52, lift), my = lerp(56, -20, lift), surface = lerp(84, 38, level);
+    bottle.setAttribute('transform', `translate(${mx} ${my})`);
+    tilt.setAttribute('transform', `rotate(${-125 * lift})`);
+    fill.setAttribute('transform', `translate(0 ${surface - 38})`);
+    stream.setAttribute('opacity', pouring && mode !== 'idle' ? 1 : 0);
+    stream.setAttribute('x1', mx); stream.setAttribute('y1', my); stream.setAttribute('x2', mx); stream.setAttribute('y2', surface);
+    raf = mode !== 'idle' || lift > .002 ? requestAnimationFrame(frame) : 0;
+  }
+  const kick = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } };
+  const start = held => { mode = level >= 1 ? 'drain' : held ? 'pour' : 'auto'; label(); kick(); };
+  const stop = () => { if (mode === 'pour') { mode = 'idle'; label(); kick(); } };
+  btn.addEventListener('pointerdown', e => { btn.setPointerCapture(e.pointerId); start(true); });
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(ev => btn.addEventListener(ev, stop));
+  // Space/Enter work like holding the glass; preventDefault keeps them from also firing a click
+  btn.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); if (!e.repeat) start(true); } });
+  btn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); stop(); } });
+  // a click with no pointer or key behind it comes from assistive tech: pour a full glass (or empty it)
+  btn.addEventListener('click', e => { if (e.detail === 0 && mode === 'idle') start(false); });
+  label(); kick();
+});
 
 // ---------- booking (client-side only) ----------
 const form = document.getElementById('booking'), dateIn = form.date;
