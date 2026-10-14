@@ -21,7 +21,6 @@ Most summer afternoons the south-easter pulls a cloud over Table Mountain, and l
 | Section | Motion | How |
 |---|---|---|
 | Hero | The tablecloth rests on the mountain, then pours down the face and evaporates as it sinks. Moving the cursor pushes the cloud around. | Canvas: ~400 soft particles (~220 on phones) that rest on the table, then fall and stretch into streaks. They fade as they drop into warmer air. |
-| Headline | Letters start thin and widen into place on load. They stretch further the harder you "blow" with the cursor. | The variable `wdth` axis of Anybody, driven by smoothed cursor speed. The wind readout climbs too. |
 | A February day | Pinned scroll scrub from 06:00 to 20:00. The sky changes colour and the sun arcs across. The cloud spills over at 13:30, and the city and vineyard temperatures pull apart. | GSAP ScrollTrigger scrub. All five moments stay listed as a timeline, and the current one is highlighted. |
 | Wines | Each glass fills with its wine as it scrolls into view. | SVG clip path with a CSS transform. |
 | Visit | Tasting booking with real validation: closed Mondays, tomorrow to six months ahead, 1–12 guests. | Client-side only. Nothing is sent, and the page says so. |
@@ -29,7 +28,7 @@ Most summer afternoons the south-easter pulls a cloud over Table Mountain, and l
 ## Design choices
 
 - **Palette:** cool fog, mountain slate, vineyard green, pale Sauvignon gold and a protea pink for focus and errors. I avoided the warm cream every wine site uses, because this estate's story is about cold.
-- **Type:** Anybody (a variable-width grotesque) for display, so the type can react to the wind. Newsreader for reading.
+- **Type:** Anybody (a variable-width grotesque) for display, set narrow for section headings and wide for the hero. Newsreader for reading. The hero headline stays still so the cloud behind it gets all the attention.
 - **One bold thing:** the cloud. Everything else stays quiet.
 
 ## Stack
@@ -42,7 +41,7 @@ python3 -m http.server 8790
 
 ## Details
 
-- `prefers-reduced-motion`: no smooth scroll, no intro, and the cloud is drawn as a still frame. The day scrub follows the scrollbar directly.
+- `prefers-reduced-motion`: no smooth scroll, and the cloud is drawn as a still frame. The day scrub follows the scrollbar directly.
 - Phones get a tighter crop on the mountain, fewer particles, a single-column layout and only the current timeline moment.
 - Visible focus rings, labelled form fields, and error messages tied to their inputs.
 
