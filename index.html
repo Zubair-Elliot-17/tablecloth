@@ -7,245 +7,253 @@
 <meta name="description" content="Cool-climate wines from the Constantia slopes, cooled every summer afternoon by the cloud the south-easter pours over Table Mountain.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400..700;1,400..700&display=block" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233E5363'/%3E%3Cpath d='M5 12h22M9 12v7M16 12v11M23 12v6' stroke='%23E6ECEE' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400..700;1,400..700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-2400.jpg" imagesrcset="img/hero-1200.jpg 1200w, img/hero-2400.jpg 2400w" imagesizes="100vw">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B2125'/%3E%3Cpath d='M5 12h22M9 12v7M16 12v11M23 12v6' stroke='%23EEF0EC' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
 :root {
-  --paper: #F3F4F1;
-  --mist: #D5DAD8;
-  --ink: #22303A;
-  --muted: #56626B;
-  --vine: #23402F;
-  --sauv: #C9CF7A;
-  --must: #7A1F33;
+  --stone: #E4E5E0;
+  --paper: #F1F2EE;
+  --ink: #23292D;
+  --muted: #5E6569;
+  --night: #1B2125;
+  --red: #A2392B;
   --serif: "Libre Caslon Text", Georgia, serif;
   --display: "Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
-  --gutter: clamp(16px, 4vw, 56px);
+  --gutter: clamp(20px, 5vw, 56px);
 }
 * { box-sizing: border-box; margin: 0; }
 html { -webkit-text-size-adjust: 100%; }
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font: 400 1.1875rem/1.65 var(--serif);
-  font-variant-numeric: oldstyle-nums;
-  overflow-x: hidden;
-}
-img, svg, canvas { display: block; }
+body { background: var(--stone); color: var(--ink); font: 400 1.0625rem/1.75 var(--serif); font-variant-numeric: oldstyle-nums; overflow-x: hidden; }
+img, svg { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px; }
-:focus-visible { outline: 2px solid var(--must); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--paper); padding: 8px 14px; z-index: 50; }
 .skip:focus { left: 8px; }
-.wrap { padding-inline: var(--gutter); max-width: 1240px; margin-inline: auto; }
-h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; }
-h2 { font-size: clamp(2.4rem, 4.6vw, 3.9rem); letter-spacing: -.01em; margin-bottom: .45em; }
-h3 { font-size: 1.65rem; }
-.lede { font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.45; max-width: 30em; }
-.btn {
-  display: inline-block; font: 700 1.05rem/1 var(--serif); padding: 16px 26px; border: 0; border-radius: 2px;
-  background: var(--must); color: var(--paper); text-decoration: none; cursor: pointer; transition: background .2s;
-}
-.btn:hover { background: #5F1727; }
 
-/* nav: the wordmark only appears once the big one in the hero has scrolled away */
-.nav { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: baseline; gap: 28px; padding: 18px var(--gutter); transition: background .3s, box-shadow .3s; }
-.nav.solid { background: var(--paper); box-shadow: 0 1px 0 var(--mist); }
-.brand { font: 400 1.65rem/1 var(--display); text-decoration: none; margin-right: auto; transition: opacity .3s, visibility .3s; }
-.nav:not(.solid):not(.open) .brand { opacity: 0; visibility: hidden; }
-.nav a:not(.brand) { text-decoration: none; font-size: 1.05rem; }
-.nav a:not(.brand):hover, .nav a.book { text-decoration: underline; }
-.nav a.book { color: var(--must); font-weight: 700; }
-.nav-links { display: flex; gap: 28px; }
-.menu-btn { display: none; font: 400 1.05rem/1 var(--serif); padding: 6px 0; border: 0; background: none; color: inherit; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
+/* the engraved-caps voice: wordmark, nav and chapter titles only */
+.caps { font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: .16em; }
+.col { max-width: 35rem; margin-inline: auto; padding-inline: var(--gutter); box-sizing: content-box; }
+.wide { max-width: 68rem; margin-inline: auto; padding-inline: var(--gutter); }
+.col p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.col p + p { margin-top: 1em; }
 
-/* hero: the canvas is transparent above the ridge, so the mountain and cloud sit in front of the name */
-.hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: linear-gradient(#93AABA, #C9D5DB 55%, #DCE3E6); }
-.hero h1 { position: absolute; inset: clamp(64px, 10vh, 110px) 0 auto; text-align: center; font-size: min(20.5vw, 30vh); line-height: .8; letter-spacing: -.02em; }
-.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-copy { position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(24px, 5vh, 52px); display: flex; justify-content: space-between; align-items: end; gap: 24px; color: var(--paper); }
-.hero-copy p { max-width: 26em; font-size: 1.15rem; line-height: 1.45; }
-.hero-copy .wind-note { text-align: right; font-style: italic; font-size: 1rem; }
-.wind-note b { display: block; font: 400 1.9rem/1.1 var(--display); font-variant-numeric: lining-nums; }
+/* hero */
+.hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: var(--night); }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 38% 60%; animation: settle 2.8s cubic-bezier(.2, .7, .2, 1) both; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(238, 240, 236, .7), rgba(238, 240, 236, 0) 38%); pointer-events: none; }
+.masthead { position: relative; z-index: 1; padding-top: clamp(36px, 7vh, 72px); text-align: center; animation: fade 1.6s .5s both; }
+.masthead h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1; letter-spacing: .14em; margin-right: -.14em; }
+.masthead nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px clamp(18px, 4vw, 52px); margin-top: 18px; }
+.masthead nav a, .bar a { font: 400 .78rem/1.6 var(--serif); text-transform: uppercase; letter-spacing: .2em; text-decoration: none; }
+.masthead nav a:hover, .bar a:hover { text-decoration: underline; }
+@keyframes settle { from { transform: scale(1.07); } }
+@keyframes fade { from { opacity: 0; } }
 
-/* about */
-.about { padding-block: clamp(96px, 13vw, 170px) clamp(72px, 9vw, 120px); }
-.about .lede { margin-bottom: 1.1em; }
-.about p:not(.lede) { max-width: 36em; }
-.about p + p:not(.lede) { margin-top: 1em; }
+/* slim bar once the masthead has scrolled away */
+.bar { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: 14px var(--gutter); background: var(--stone); box-shadow: 0 1px 0 rgba(35, 41, 45, .12); transform: translateY(-100%); visibility: hidden; transition: transform .35s, visibility .35s; }
+.bar.show { transform: none; visibility: visible; }
+.bar .home { font: 400 1.05rem/1 var(--display); letter-spacing: .16em; }
+.bar .book { color: var(--red); }
 
-/* day */
-.day { position: relative; height: 100svh; min-height: 600px; overflow: hidden; color: var(--paper); background: var(--sky, #6F8797); }
-.day-scene { position: absolute; inset: 0; pointer-events: none; }
-.day-scene svg { width: 100%; height: 100%; overflow: visible; }
-.day-inner { position: relative; height: 100%; padding-block: 100px 48px; display: grid; grid-template-columns: auto 1fr; align-content: start; column-gap: clamp(32px, 6vw, 96px); }
-.day .day-head { grid-column: 1 / -1; font: italic 400 1.15rem/1.3 var(--serif); margin-bottom: 6px; }
-.clock { font: 400 clamp(5rem, 14vw, 12rem)/.9 var(--display); font-variant-numeric: lining-nums; }
+/* prologue */
+.prologue { background: var(--night); color: var(--paper); padding-block: clamp(80px, 11vw, 140px); }
+.prologue h2, .sub, figcaption { font: italic 400 1.15rem/1.4 var(--serif); }
+.prologue h2 { text-align: center; margin-bottom: 1.4em; }
+.signature { margin-top: 28px; text-align: right; font: 400 2.6rem/1 "Mrs Saint Delafield", cursive; }
+.signature small { display: block; font: italic 400 .9rem/1.4 var(--serif); opacity: .7; margin-top: 4px; }
+.chapters { list-style: none; padding: 0; margin-top: 56px; display: grid; justify-content: center; gap: 10px; text-align: center; }
+.chapters a { font-size: .95rem; text-decoration: none; }
+.chapters a:hover { text-decoration: underline; }
+.chapters span, h2 .num { color: var(--red); margin-right: .5em; }
+.prologue .chapters span { color: #D9786A; }
+
+/* chapters */
+.chapter { padding-block: clamp(80px, 10vw, 130px); }
+.chapter h2 { font-size: 1.3rem; line-height: 1.3; }
+.sub { color: var(--muted); margin: 4px 0 2em; }
+.print { float: right; width: 46%; margin: .4em -14% 1em 2em; padding: 10px; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 10px 28px rgba(0, 0, 0, .1); }
+.print.left { float: left; margin: .4em 2em 1em -14%; }
+.print figcaption { font-size: .9rem; color: var(--muted); margin-top: 8px; text-align: left; }
+.chapter .col::after { content: ""; display: block; clear: both; }
+.band { height: clamp(300px, 72vh, 760px); overflow: hidden; }
+.band img { width: 100%; height: 100%; object-fit: cover; }
+
+/* the day: a monochrome photo, washed in the colour of the sky at that hour */
+.day { position: relative; height: 100svh; min-height: 600px; overflow: hidden; color: var(--paper); background: var(--night); text-align: center; }
+.day img, .day .tint { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.day .tint { background: linear-gradient(rgba(16, 20, 24, .38), rgba(16, 20, 24, .38)), var(--sky, #557C98); background-blend-mode: normal; mix-blend-mode: multiply; }
+.day-inner { position: relative; height: 100%; display: grid; place-content: center; justify-items: center; padding-inline: var(--gutter); }
+.day h2 { font: italic 400 1.15rem/1.4 var(--serif); }
+.clock { font: 400 clamp(5rem, 15vw, 12rem)/1 var(--display); font-variant-numeric: lining-nums; margin: 10px 0 6px; }
+/* Caslon has no tabular figures, so each digit gets a fixed slot to keep the clock still */
 .clock i { font-style: normal; display: inline-block; width: .6em; text-align: center; }
 .clock i:nth-child(3) { width: .32em; }
-.temps { display: flex; gap: 40px; align-self: end; padding-bottom: 1.4rem; }
-.temp { min-width: 7ch; }
-.temp span { display: block; font-size: 1rem; font-style: italic; }
-.temp b { font: 400 3.2rem/1 var(--display); font-variant-numeric: lining-nums; }
-.temp i { display: block; height: 3px; margin-top: 10px; background: currentColor; transform-origin: left; transform: scaleX(var(--t, .5)); }
-.temp.vineyard b, .temp.vineyard i { color: var(--sauv); }
+.temps { display: flex; gap: clamp(32px, 6vw, 72px); }
+.temp span { display: block; font-size: .95rem; font-style: italic; }
+.temp b { font: 400 2.8rem/1.1 var(--display); font-variant-numeric: lining-nums; }
+.temp i { display: block; height: 2px; margin: 8px auto 0; width: 100%; background: currentColor; transform: scaleX(var(--t, .5)); }
+.temp.vineyard b, .temp.vineyard i { color: #E0E39A; }
 /* the current moment only, all in one cell so the block never changes height */
-.beats { grid-column: 1 / -1; list-style: none; padding: 0; margin-top: 22px; display: grid; max-width: 32em; }
-.beats li { grid-area: 1 / 1; font-size: clamp(1.25rem, 1.8vw, 1.5rem); line-height: 1.35; opacity: 0; transition: opacity .35s; }
+.beats { list-style: none; padding: 0; margin-top: 30px; display: grid; max-width: 30em; }
+.beats li { grid-area: 1 / 1; font-size: clamp(1.15rem, 1.7vw, 1.35rem); line-height: 1.45; opacity: 0; transition: opacity .35s; }
 .beats li.on { opacity: 1; }
 .beats time { font-style: italic; font-variant-numeric: lining-nums; margin-right: .4em; }
 
 /* vineyard map */
-.estate { background: #E4E8E1; padding-block: clamp(96px, 12vw, 150px); }
-.estate header, .wines header { margin-bottom: 44px; }
-.vy-grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: start; }
-.map { margin: 0; }
-.map svg { width: 100%; height: auto; background: #F1F2EC; border: 1px solid #C3C9BF; --rows: 1; }
-.map .blk { stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 1; cursor: pointer; transition: fill-opacity .25s, stroke-width .25s; }
+.vy-grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; margin-top: 56px; }
+.map { margin: 0; padding: 10px; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 10px 28px rgba(0, 0, 0, .1); }
+.map svg { width: 100%; height: auto; background: var(--paper); --rows: 1; }
+.map .blk { stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 1; cursor: pointer; transition: fill-opacity .25s, stroke-width .25s; }
 .map .blk.dim { fill-opacity: .35; }
-.map .blk.sel { stroke-width: 3.5; }
-.map .rows line { stroke: var(--vine); stroke-opacity: .55; stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: var(--rows); pointer-events: none; }
-.map .lane { fill: none; stroke: #B7A27A; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 2 8; }
-.map .tag { font: 700 15px/1 var(--serif); fill: var(--ink); paint-order: stroke; stroke: #F1F2EC; stroke-width: 4px; pointer-events: none; }
+.map .blk.sel { stroke-width: 3; }
+.map .rows line { stroke: var(--ink); stroke-opacity: .45; stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: var(--rows); pointer-events: none; }
+.map .lane { fill: none; stroke: #9A8F7C; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 7; }
+.map .tag { font: 700 15px/1 var(--serif); fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; pointer-events: none; }
 .map .note { font: italic 15px/1 var(--serif); fill: var(--muted); }
-.map figcaption { margin-top: 14px; font-size: 1.05rem; }
-.map figcaption b { display: inline-block; min-width: 1.75em; font: 400 1.9rem/1 var(--display); font-variant-numeric: lining-nums; }
-.block-list { display: grid; margin-bottom: 28px; border-top: 1px solid #C3C9BF; }
-.block-list button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid #C3C9BF; background: none; color: var(--ink); font: 400 1.15rem/1.2 var(--serif); text-align: left; cursor: pointer; }
-.block-list button::before { content: ""; flex: none; width: 14px; height: 14px; background: var(--c); border: 1px solid var(--ink); }
+.map figcaption { font-size: 1rem; margin-top: 10px; padding-inline: 4px; color: var(--ink); font-style: normal; }
+.map figcaption b { display: inline-block; min-width: 1.75em; font: 400 1.7rem/1 var(--display); font-variant-numeric: lining-nums; }
+.block-list { display: grid; margin-bottom: 26px; border-top: 1px solid rgba(35, 41, 45, .2); }
+.block-list button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 0; border: 0; border-bottom: 1px solid rgba(35, 41, 45, .2); background: none; color: var(--ink); font: 400 1.05rem/1.2 var(--serif); text-align: left; cursor: pointer; }
+.block-list button::before { content: ""; flex: none; width: 12px; height: 12px; background: var(--c); border: 1px solid var(--ink); }
 .block-list button:hover { text-decoration: underline; text-underline-offset: .2em; }
 .block-list button[aria-pressed="true"] { font-weight: 700; }
-.block-info h3 { font-size: 2rem; margin-bottom: 14px; }
-.block-info dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 22px; margin-bottom: 16px; }
+.block-info h3 { font: 400 1.7rem/1.1 var(--display); margin-bottom: 12px; }
+.block-info dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 20px; margin-bottom: 14px; }
 .block-info dt { font-style: italic; color: var(--muted); }
-.block-info p { max-width: 30em; }
 
-/* wines: a tasting list */
-.wines { padding-block: clamp(96px, 12vw, 160px); }
-.wine-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 80px); }
-.wine { display: grid; grid-template-columns: auto 1fr; align-content: start; gap: 0 26px; padding-block: 32px; border-top: 1px solid var(--mist); }
+/* wines */
+.wine-list { list-style: none; padding: 0; margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 72px); }
+.wine { display: grid; grid-template-columns: auto 1fr; align-content: start; gap: 0 24px; padding-block: 30px; border-top: 1px solid rgba(35, 41, 45, .2); }
 .pour {
   grid-row: 1 / span 3; display: grid; justify-items: start; gap: 6px; padding: 0; border: 0; background: none; color: inherit;
-  font: italic 400 .95rem/1.2 var(--serif); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+  font: italic 400 .9rem/1.2 var(--serif); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
   -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
 }
 .pour:active { cursor: grabbing; }
 .pour .hint { color: var(--muted); }
-.glass { width: 110px; height: 183px; }
+.glass { width: 104px; height: 173px; }
 .wine-name { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.wine h3 { font-size: 1.9rem; }
-.wine .price { font: 400 1.4rem/1 var(--display); font-variant-numeric: lining-nums; }
+.wine h3 { font: 400 1.7rem/1.1 var(--display); }
+.wine .price { font: 400 1.25rem/1 var(--display); font-variant-numeric: lining-nums; }
 .wine .kind { font-style: italic; color: var(--muted); margin: 2px 0 10px; }
-.wine p { font-size: 1.05rem; }
+.wine p { font-size: 1rem; }
 
 /* visit */
-.visit { background: var(--vine); color: var(--paper); padding-block: clamp(90px, 12vw, 150px); }
-.visit-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6vw; }
-.hours { margin-top: 40px; display: grid; grid-template-columns: auto 1fr; gap: 6px 24px; }
-.hours dt { font-style: italic; }
+.visit { background: var(--night); color: var(--paper); padding-block: clamp(80px, 11vw, 140px); }
+.visit h2 { font-size: 1.3rem; line-height: 1.3; }
+.visit .sub { color: rgba(241, 242, 238, .7); }
+.visit-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(36px, 6vw, 88px); }
+.hours { margin-top: 32px; display: grid; grid-template-columns: auto 1fr; gap: 4px 22px; }
+.hours dt { font-style: italic; opacity: .75; }
 form { display: grid; gap: 22px; }
 fieldset { border: 0; padding: 0; display: grid; }
-legend, label { font: 700 1rem/1.3 var(--serif); margin-bottom: 8px; }
-.option { font: 400 1.02rem/1.35 var(--serif); margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(243, 244, 241, .25); cursor: pointer; }
-.option:first-of-type { border-top: 1px solid rgba(243, 244, 241, .25); }
-.option input { accent-color: var(--sauv); width: 18px; height: 18px; }
-.option span { opacity: .85; }
-.option strong { display: block; opacity: 1; }
-.option:has(input:checked) strong { color: var(--sauv); }
-.option em { font: 400 1.25rem/1 var(--display); font-style: normal; font-variant-numeric: lining-nums; }
+legend, label { font: italic 400 1rem/1.3 var(--serif); margin-bottom: 8px; }
+.option { font: 400 1rem/1.4 var(--serif); font-style: normal; margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(241, 242, 238, .2); cursor: pointer; }
+.option:first-of-type { border-top: 1px solid rgba(241, 242, 238, .2); }
+.option input { accent-color: var(--red); width: 17px; height: 17px; }
+.option span { opacity: .8; }
+.option strong { display: block; font-weight: 700; }
+.option em { font: 400 1.2rem/1 var(--display); font-style: normal; font-variant-numeric: lining-nums; }
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .field { display: grid; }
 input[type=text], input[type=email], input[type=date], input[type=number] {
-  font: 400 1.05rem/1.2 var(--serif); font-variant-numeric: lining-nums; color: var(--ink); background: var(--paper); border: 2px solid transparent; border-radius: 2px; padding: 13px 14px; width: 100%;
+  font: 400 1.05rem/1.2 var(--serif); font-variant-numeric: lining-nums; color: var(--ink); background: var(--paper); border: 2px solid transparent; border-radius: 0; padding: 12px 14px; width: 100%;
 }
 input:user-invalid { border-color: #F2B8C3; }
-.err { min-height: 1.3em; font-size: .95rem; color: #F2B8C3; margin-top: 4px; }
-.visit .btn { background: var(--sauv); color: var(--ink); justify-self: start; }
-.visit .btn:hover { background: var(--paper); }
-.demo { font-size: .92rem; opacity: .75; }
-.done { border: 1px solid var(--sauv); border-radius: 2px; padding: 32px; }
+.err { min-height: 1.3em; font-size: .92rem; color: #F2B8C3; margin-top: 4px; }
+.btn { justify-self: start; font: 400 .85rem/1 var(--serif); text-transform: uppercase; letter-spacing: .2em; padding: 17px 28px; border: 0; background: var(--red); color: #fff; cursor: pointer; transition: background .2s; }
+.btn:hover { background: #87291E; }
+.demo { font-size: .88rem; opacity: .65; }
+.done { border: 1px solid rgba(241, 242, 238, .35); padding: 32px; }
 .done:focus { outline: none; }
-.done h3 { font-size: 2.2rem; margin-bottom: 12px; }
+.done h3 { font: 400 1.9rem/1.1 var(--display); margin-bottom: 12px; }
 
-footer { padding-block: 56px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 1rem; color: var(--muted); }
+footer { background: var(--night); color: rgba(241, 242, 238, .7); border-top: 1px solid rgba(241, 242, 238, .12); padding-block: 56px 64px; text-align: center; font-size: .9rem; }
+footer .caps { font-size: 1.4rem; color: var(--paper); margin-bottom: 14px; }
+footer p + p { margin-top: 6px; }
+footer details { margin: 22px auto 0; max-width: 46rem; }
+footer summary { cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
+footer ul { list-style: none; padding: 0; margin-top: 12px; line-height: 1.6; }
 
-@media (hover: none) { .wind-note .how { display: none; } }
+@media (prefers-reduced-motion: reduce) { .hero img, .masthead { animation: none; } }
 @media (max-width: 900px) {
-  .menu-btn { display: inline-block; }
-  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 4px var(--gutter) 14px; background: var(--paper); border-bottom: 1px solid var(--mist); }
-  .nav.open { background: var(--paper); }
-  .nav.open .nav-links { display: flex; }
-  .nav-links a { padding: 14px 0; font-size: 1.25rem !important; border-bottom: 1px solid var(--mist); }
-  .nav-links a:last-child { border-bottom: 0; }
-  .hero-copy .wind-note { display: none; }
   .visit-grid, .vy-grid { grid-template-columns: 1fr; }
-  .day-inner { grid-template-columns: 1fr; }
-  .temps { gap: 28px; padding-bottom: 0; margin-top: 18px; }
   .wine-list { grid-template-columns: 1fr; }
-}
-/* short phone screens (Safari with its toolbars showing): drop the scene so the cloud clears the text */
-@media (max-width: 900px) and (max-height: 780px) {
-  .day-scene { top: 16%; }
+  .print, .print.left { float: none; width: auto; max-width: 420px; margin: 0 auto 2em; }
+  .print img { width: 100%; max-height: 55svh; object-fit: cover; }
 }
 @media (max-width: 520px) {
-  body { font-size: 1.1rem; }
-  .nav { gap: 18px; }
-  .nav .book .long { display: none; }
+  .masthead nav a { font-size: .72rem; letter-spacing: .16em; }
   .map .tag { font-size: 19px; }
   .map .note { font-size: 24px; }
-  .glass { width: 88px; height: 146px; }
+  .glass { width: 84px; height: 140px; }
   .wine { gap: 0 16px; }
-  .wine h3 { font-size: 1.6rem; }
+  .wine h3 { font-size: 1.45rem; }
   .row { grid-template-columns: 1fr; }
+  .col p { text-align: left; }
 }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<nav class="nav" aria-label="Main">
-  <a class="brand" href="#top">Tablecloth</a>
-  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
-  <div class="nav-links" id="navLinks">
-    <a href="#about">About</a>
-    <a href="#day">The cloud</a>
-    <a href="#vineyard">Vineyard</a>
-    <a href="#wines">Wines</a>
-  </div>
-  <a class="book" href="#visit">Book<span class="long"> a tasting</span></a>
-</nav>
+<div class="bar">
+  <a class="home caps" href="#top">Tablecloth</a>
+  <a class="book" href="#visit">Book a tasting</a>
+</div>
 
 <main id="main">
-  <section class="hero" id="top" aria-label="Introduction">
-    <h1>Tablecloth</h1>
-    <canvas id="sky" aria-hidden="true"></canvas>
-    <div class="hero-copy">
-      <p>A wine estate in Constantia, on the cool side of Table Mountain, under the cloud Capetonians call the tablecloth.</p>
-      <p class="wind-note" aria-hidden="true">South-easter<b id="windSpeed">38 km/h</b><span class="how">Move your cursor to blow the cloud</span></p>
+  <header class="hero" id="top">
+    <img src="img/hero-2400.jpg" srcset="img/hero-1200.jpg 1200w, img/hero-2400.jpg 2400w" sizes="100vw" fetchpriority="high"
+      alt="The tablecloth cloud pouring down the face of Table Mountain, above fynbos on the lower slopes">
+    <div class="masthead">
+      <h1 class="caps">Tablecloth</h1>
+      <nav aria-label="Main">
+        <a href="#story">Story</a>
+        <a href="#cloud">The cloud</a>
+        <a href="#vineyard">Vineyard</a>
+        <a href="#wines">Wines</a>
+        <a href="#visit">Visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="prologue" id="story" aria-labelledby="storyTitle">
+    <div class="col">
+      <h2 id="storyTitle">The farm on the cold side of the mountain</h2>
+      <p>Tablecloth is a family wine farm in Constantia, on the far side of Table Mountain from the city. Vines have grown on this slope since 1891. Most summer afternoons the south-easter drags a cloud over the top of the mountain, and Capetonians call it the tablecloth. From town it looks like a postcard. From our rows it is a cold front that arrives at about two o'clock and stays until dark.</p>
+      <p>That cloud is the reason we exist. It keeps the vineyard around seven degrees cooler than the city, so the grapes ripen slowly and keep their acidity in a place that should be too hot for them. We grow 34 hectares, pick by hand at dawn, make about 60,000 bottles a year in the cellar at the bottom of the slope, and pour them at the cellar door six days a week.</p>
+      <p class="signature" aria-label="Signed, Anna, winemaker">Anna<small>Winemaker</small></p>
+      <ol class="chapters caps">
+        <li><a href="#cloud"><span>I.</span>The cloud</a></li>
+        <li><a href="#vineyard"><span>II.</span>The slope</a></li>
+        <li><a href="#wines"><span>III.</span>The wines</a></li>
+        <li><a href="#visit"><span>IV.</span>The cellar door</a></li>
+      </ol>
     </div>
   </section>
 
-  <section class="wrap about" id="about" aria-labelledby="aboutTitle">
-    <h2 id="aboutTitle">About Tablecloth</h2>
-    <p class="lede">We are a family wine farm in Constantia, on the far side of Table Mountain from the city. Vines have grown on this slope since 1891.</p>
-    <p>Most summer afternoons the south-easter drags a cloud over the top of the mountain. From town it looks like a postcard. From our rows it's a cold front that arrives at about two o'clock and stays until dark, so the vineyard runs around seven degrees cooler than the city. The grapes ripen slowly and keep their acidity.</p>
-    <p>Everything happens on the farm. We grow 34 hectares of vines, pick them by hand at dawn in February and March, make about 60,000 bottles a year in the cellar at the bottom of the slope, and pour them at the cellar door six days a week.</p>
+  <section class="chapter" id="cloud" aria-labelledby="cloudTitle">
+    <div class="col">
+      <h2 class="caps" id="cloudTitle"><span class="num">I.</span>The cloud</h2>
+      <p class="sub">Why our side of the mountain stays cool</p>
+      <figure class="print">
+        <img src="img/pour-1000.jpg" srcset="img/pour-600.jpg 600w, img/pour-1000.jpg 1000w" sizes="(max-width: 900px) 90vw, 300px" loading="lazy" width="1000" height="1500"
+          alt="Cloud spilling over a cliff edge on Table Mountain">
+        <figcaption>The south-easter pouring cloud off the table.</figcaption>
+      </figure>
+      <p>The south-easter blows across False Bay in summer and picks up moisture on the way. When it hits Table Mountain it is pushed up the slopes, cools, and condenses into a flat white cloud that sits on the summit. Then it spills over the edge and pours down the other side, evaporating as it sinks into warmer air.</p>
+      <p>Constantia lies in the lee of that pour. While the City Bowl bakes at thirty degrees, our rows sit under cloud and wind. The grapes keep their freshness, and the wines taste of a cooler place than a map of Africa would suggest.</p>
+      <p>Scroll through a February day below to watch the two sides of the mountain pull apart.</p>
+    </div>
   </section>
 
   <section class="day" id="day" aria-labelledby="dayTitle">
-    <div class="day-scene" aria-hidden="true">
-      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
-        <defs><filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14"/></filter></defs>
-        <circle id="sun" cx="200" cy="760" r="32" fill="#F6E9B8" opacity=".75"/>
-        <path d="M0 770 L160 700 L260 575 L320 610 L420 582 L1150 578 L1230 655 L1310 668 L1380 612 L1430 610 L1490 660 L1600 710 V900 H0Z" fill="#3E5363"/>
-        <g id="dayCloud" opacity="0" filter="url(#soft)" fill="#F3F6F7">
-          <ellipse cx="785" cy="572" rx="390" ry="26"/>
-          <path d="M410 580 Q460 650 480 690 Q560 630 620 680 Q700 620 760 700 Q840 630 920 680 Q1000 620 1060 690 Q1110 640 1160 580Z" opacity=".75"/>
-        </g>
-        <path d="M0 810 Q400 770 800 800 T1600 790 V900 H0Z" fill="#23402F"/>
-      </svg>
-    </div>
-    <div class="wrap day-inner">
-      <h2 class="day-head" id="dayTitle">A February day in town and in our vineyard</h2>
+    <img src="img/peaks-2400.jpg" srcset="img/peaks-1200.jpg 1200w, img/peaks-2400.jpg 2400w" sizes="100vw" loading="lazy" alt="">
+    <div class="tint" aria-hidden="true"></div>
+    <div class="day-inner">
+      <h2 id="dayTitle">A February day in town and in our vineyard</h2>
       <p class="clock" aria-live="off"><span id="clock">06:00</span></p>
       <div class="temps">
         <div class="temp"><span>City Bowl</span><b id="tCity">19&deg;</b><i id="bCity"></i></div>
@@ -261,50 +269,62 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
     </div>
   </section>
 
-  <section class="estate" id="vineyard" aria-labelledby="vineyardTitle">
-    <div class="wrap">
-      <header>
-        <h2 id="vineyardTitle">Where each wine grows</h2>
-        <p class="lede">We don't buy in grapes. Each wine comes from its own block on the farm, picked by hand and driven a few hundred metres down to the cellar.</p>
-      </header>
-      <div class="vy-grid">
-        <figure class="map">
-          <svg id="estateMap" viewBox="0 0 800 520" role="img" aria-labelledby="mapDesc">
-            <title id="mapDesc">Map of the estate: five vineyard blocks on the slope below Table Mountain, with farm tracks running down to the cellar.</title>
-            <defs><filter id="mapCloud" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="10"/></filter></defs>
-            <path d="M0 0 H800 V92 L712 108 L640 84 L560 96 L250 90 L180 62 L110 98 L0 84Z" fill="#7C8F9C"/>
-            <path d="M0 0 H800 V58 L712 72 L640 52 L560 62 L250 56 L180 30 L110 64 L0 52Z" fill="#62788A"/>
-            <text class="tag" x="22" y="34" style="fill:#F1F2EC;stroke:none">Table Mountain</text>
-            <g filter="url(#mapCloud)" fill="#fff" opacity=".85"><ellipse cx="400" cy="96" rx="430" ry="34"/><ellipse cx="420" cy="140" rx="300" ry="26" opacity=".6"/></g>
-            <line x1="20" y1="206" x2="780" y2="206" stroke="#6E8090" stroke-width="1.5" stroke-dasharray="6 6"/>
-            <line x1="22" y1="500" x2="58" y2="500" stroke="#6E8090" stroke-width="1.5" stroke-dasharray="6 6"/>
-            <text class="note" x="66" y="505">where the cloud usually stops</text>
-            <g id="lanes"></g>
-            <g id="blocks"></g>
-            <g id="crates"></g>
-            <g transform="translate(398 452)">
-              <rect x="0" y="12" width="64" height="38" fill="#F3EFE6" stroke="var(--ink)" stroke-width="1.5"/>
-              <path d="M-6 14 L32 -8 L70 14Z" fill="#8E3B2F" stroke="var(--ink)" stroke-width="1.5"/>
-              <rect x="26" y="28" width="12" height="22" fill="var(--ink)"/>
-            </g>
-            <text class="tag" x="476" y="492">Cellar</text>
-          </svg>
-          <figcaption><b id="tonnes">0</b> tonnes of grapes in the cellar this harvest</figcaption>
-        </figure>
-        <div class="block-info">
-          <div class="block-list" role="group" aria-label="Vineyard blocks"></div>
-          <div id="blockInfo" aria-live="polite"></div>
-        </div>
+  <div class="band"><img src="img/vineyards-2400.jpg" srcset="img/vineyards-1200.jpg 1200w, img/vineyards-2400.jpg 2400w" sizes="100vw" loading="lazy"
+    alt="Vineyards in the Constantia valley under a cloudy sky, with the mountains of the Cape Peninsula behind"></div>
+
+  <section class="chapter" id="vineyard" aria-labelledby="vineyardTitle">
+    <div class="col">
+      <h2 class="caps" id="vineyardTitle"><span class="num">II.</span>The slope</h2>
+      <p class="sub">Five blocks, one cellar</p>
+      <figure class="print left">
+        <img src="img/fog-1000.jpg" srcset="img/fog-600.jpg 600w, img/fog-1000.jpg 1000w" sizes="(max-width: 900px) 90vw, 300px" loading="lazy" width="1000" height="750"
+          alt="Rows of vines disappearing into morning fog">
+        <figcaption>Morning fog in the vines.</figcaption>
+      </figure>
+      <p>We don't buy in grapes. Every bottle comes from 34 hectares on the slope below the mountain, split into five blocks that each make their own wine. The highest rows sit under the cloud most summer afternoons. The lowest catch more sun and give us riper fruit to blend with.</p>
+      <p>Each block is picked on the day it tastes ready, by hand and at dawn, then driven a few hundred metres down the farm tracks to the cellar. Scroll the map to watch a harvest come in, or pick a block to read about it.</p>
+    </div>
+    <div class="wide vy-grid">
+      <figure class="map">
+        <svg id="estateMap" viewBox="0 0 800 520" role="img" aria-labelledby="mapDesc">
+          <title id="mapDesc">Map of the estate: five vineyard blocks on the slope below Table Mountain, with farm tracks running down to the cellar.</title>
+          <defs><filter id="mapCloud" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="10"/></filter></defs>
+          <path d="M0 0 H800 V92 L712 108 L640 84 L560 96 L250 90 L180 62 L110 98 L0 84Z" fill="#8A9296"/>
+          <path d="M0 0 H800 V58 L712 72 L640 52 L560 62 L250 56 L180 30 L110 64 L0 52Z" fill="#6C7478"/>
+          <text class="tag" x="22" y="34" style="fill:#F1F2EE;stroke:none">Table Mountain</text>
+          <g filter="url(#mapCloud)" fill="#fff" opacity=".85"><ellipse cx="400" cy="96" rx="430" ry="34"/><ellipse cx="420" cy="140" rx="300" ry="26" opacity=".6"/></g>
+          <line x1="20" y1="206" x2="780" y2="206" stroke="#8A9296" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <line x1="22" y1="500" x2="58" y2="500" stroke="#8A9296" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <text class="note" x="66" y="505">where the cloud usually stops</text>
+          <g id="lanes"></g>
+          <g id="blocks"></g>
+          <g id="crates"></g>
+          <g transform="translate(398 452)">
+            <rect x="0" y="12" width="64" height="38" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+            <path d="M-6 14 L32 -8 L70 14Z" fill="#5E6569" stroke="var(--ink)" stroke-width="1.5"/>
+            <rect x="26" y="28" width="12" height="22" fill="var(--ink)"/>
+          </g>
+          <text class="tag" x="476" y="492">Cellar</text>
+        </svg>
+        <figcaption><b id="tonnes">0</b> tonnes of grapes in the cellar this harvest</figcaption>
+      </figure>
+      <div class="block-info">
+        <div class="block-list" role="group" aria-label="Vineyard blocks"></div>
+        <div id="blockInfo" aria-live="polite"></div>
       </div>
     </div>
   </section>
 
-  <section class="wrap wines" id="wines" aria-labelledby="winesTitle">
-    <header>
-      <h2 id="winesTitle">Our wines</h2>
-      <p class="lede">Four small runs, all from our own vines. Hold a glass to pour it.</p>
-    </header>
-    <ul class="wine-list">
+  <div class="band"><img src="img/nek-2400.jpg" srcset="img/nek-1200.jpg 1200w, img/nek-2400.jpg 2400w" sizes="100vw" loading="lazy"
+    alt="Fynbos along a footpath above the Constantia valley"></div>
+
+  <section class="chapter" id="wines" aria-labelledby="winesTitle">
+    <div class="col">
+      <h2 class="caps" id="winesTitle"><span class="num">III.</span>The wines</h2>
+      <p class="sub">Four small runs, all from our own vines</p>
+      <p>We make four wines, one from each part of the slope. They are poured at the cellar door and sold there. Hold a glass to pour it.</p>
+    </div>
+    <ul class="wide wine-list">
       <li class="wine" style="--wine:#E5DE93">
         <button class="pour" type="button"></button>
         <div class="wine-name"><h3>Southeaster</h3><p class="price">R210</p></div>
@@ -332,11 +352,15 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
     </ul>
   </section>
 
+  <div class="band"><img src="img/cellar-2400.jpg" srcset="img/cellar-1200.jpg 1200w, img/cellar-2400.jpg 2400w" sizes="100vw" loading="lazy"
+    alt="Old oak barrels stacked under a brick vault"></div>
+
   <section class="visit" id="visit" aria-labelledby="visitTitle">
-    <div class="wrap visit-grid">
+    <div class="wide visit-grid">
       <div>
-        <h2 id="visitTitle">Book a tasting</h2>
-        <p class="lede">Twenty-five minutes from the city, on the cool side of the mountain. Book ahead on weekends.</p>
+        <h2 class="caps" id="visitTitle"><span class="num">IV.</span>The cellar door</h2>
+        <p class="sub">Book a tasting</p>
+        <p>Twenty-five minutes from the city, on the cool side of the mountain. Book ahead on weekends, and bring a jersey if the tablecloth is on.</p>
         <dl class="hours">
           <dt>Tue&ndash;Sun</dt><dd>10:00 to 17:00</dd>
           <dt>Mondays</dt><dd>Closed, the vines need us</dd>
@@ -367,9 +391,25 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
   </section>
 </main>
 
-<footer class="wrap">
-  <span>Tablecloth Wine Estate, Constantia. A fictional estate made for a portfolio.</span>
-  <span>Please enjoy responsibly. Not for sale to persons under 18.</span>
+<footer>
+  <div class="wide">
+    <p class="caps">Tablecloth</p>
+    <p>Tafelkleed Lane, Constantia, Cape Town. A fictional estate made for a portfolio.</p>
+    <p>Please enjoy responsibly. Not for sale to persons under 18.</p>
+    <details>
+      <summary>Photographs</summary>
+      <ul>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Cape_Town,_Table_Mountain,_Table_Cloth.jpg">The tablecloth over Table Mountain</a> by KodachromeFan, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Table_Mountain_clouds.jpg">Cloud around the peaks</a> by Selsong, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Clouds_in_table_mountain_(14584234627).jpg">Cloud pouring off the table</a> by David Rosen from London, UK, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Constantia_vineyards.jpg">Constantia vineyards</a> by Barry haynes, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Early_morning_fog_in_Nebbiolo_vineyard.jpg">Morning fog in a vineyard</a> by Blue moon in her eyes, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Old_Wine_Barrels.jpg">Old wine barrels</a> by Eric Kilby, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Walking_up_Constantia_Nek.jpg">Constantia Nek</a> by Michael Rowe, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+        <li>All photographs from Wikimedia Commons, cropped and toned to monochrome. The toned versions are shared under the same licences.</li>
+      </ul>
+    </details>
+  </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
@@ -379,6 +419,7 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const lerp = (a, b, t) => a + (b - a) * t;
 const clamp01 = v => Math.min(1, Math.max(0, v));
+const hexMix = (a, b, t) => '#' + [1,3,5].map(i => Math.round(lerp(parseInt(a.substr(i,2),16), parseInt(b.substr(i,2),16), t)).toString(16).padStart(2,'0')).join('');
 
 // ---------- smooth scroll ----------
 gsap.registerPlugin(ScrollTrigger);
@@ -397,164 +438,21 @@ if (!reduced && window.Lenis) {
   }));
 }
 
-// nav turns solid once the hero is gone
-const nav = document.querySelector('.nav');
-// phone menu: the button opens the links; picking one, Escape or a tap outside closes it
-const menuBtn = document.querySelector('.menu-btn');
-const setMenu = open => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); menuBtn.textContent = open ? 'Close' : 'Menu'; };
-menuBtn.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
-document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); menuBtn.focus(); } });
-addEventListener('pointerdown', e => { if (nav.classList.contains('open') && !nav.contains(e.target)) setMenu(false); });
-
-ScrollTrigger.create({ trigger: '.hero', start: 'bottom 70px', onEnter: () => nav.classList.add('solid'), onLeaveBack: () => nav.classList.remove('solid') });
-
-// ---------- hero: mountain + pouring cloud ----------
-const canvas = document.getElementById('sky');
-const ctx = canvas.getContext('2d');
-// Table Mountain from the city: Devil's Peak, the flat table, Lion's Head. x 0..1, y as fraction of height.
-const RIDGE = [[0,.64],[.06,.56],[.12,.43],[.17,.31],[.21,.35],[.25,.38],[.29,.36],[.70,.355],[.74,.45],[.78,.53],[.82,.51],[.845,.45],[.865,.415],[.89,.41],[.91,.46],[.95,.58],[1,.65]];
-const TOP_L = .29, TOP_R = .70, TOP_Y = .358, BASE = .80;
-let W, H, dpr, sx, particles = [], blob;
-const pointer = { x: -1e4, y: -1e4, vx: 0, vy: 0, t: 0 };
-let wind = 0; // smoothed cursor speed, drives the wind readout
-
-function makeBlob() {
-  blob = document.createElement('canvas');
-  blob.width = blob.height = 128;
-  const b = blob.getContext('2d');
-  const g = b.createRadialGradient(64, 64, 0, 64, 64, 64);
-  g.addColorStop(0, 'rgba(246,248,249,1)');
-  g.addColorStop(.45, 'rgba(242,246,247,.8)');
-  g.addColorStop(1, 'rgba(236,241,243,0)');
-  b.fillStyle = g; b.fillRect(0, 0, 128, 128);
-}
-// portrait screens crop to the table itself
-const X = x => (x - .5) * sx * W + W / 2;
-// height-only changes (a phone's toolbar) keep the cloud going
-function resize() {
-  const w = canvas.clientWidth, h = canvas.clientHeight, widthChanged = w !== W;
-  if (!widthChanged && h === H) return;
-  dpr = Math.min(devicePixelRatio || 1, 2);
-  W = w; H = h;
-  canvas.width = W * dpr; canvas.height = H * dpr;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  sx = W / H < 1 ? 1.5 : W / H < 1.4 ? 1.25 : 1;
-  if (widthChanged) particles = Array.from({ length: W < 700 ? 220 : 420 }, () => spawn(true));
-}
-function spawn(scatter) {
-  // denser in the middle of the table, thinning toward the edges
-  const x = lerp(TOP_L - .02, TOP_R + .02, (Math.random() + Math.random() + Math.random()) / 3);
-  const p = { x: X(x), y: TOP_Y * H - Math.random() * 10, vx: (Math.random() - .5) * .25, vy: Math.random() * .15, r: lerp(36, 80, Math.random()) * (W < 700 ? .7 : 1), a: 0, age: 0, rest: lerp(40, 260, Math.random()), max: lerp(.5, 1.6, Math.random() ** 2) };
-  if (scatter) { p.age = Math.random() * 600; p.y += Math.random() ** 2 * .3 * H; p.a = .6; }
-  return p;
-}
-function drawMountain() {
-  // the sky is the hero's CSS background, so the name behind the canvas shows through
-  ctx.clearRect(0, 0, W, H);
-  // mountain face, lighter where the afternoon light hits
-  const face = ctx.createLinearGradient(0, TOP_Y * H, 0, BASE * H);
-  face.addColorStop(0, '#4E6575'); face.addColorStop(1, '#2F4150');
-  ctx.beginPath(); ctx.moveTo(X(RIDGE[0][0]) - W, RIDGE[0][1] * H);
-  RIDGE.forEach(([x, y]) => ctx.lineTo(X(x), y * H));
-  ctx.lineTo(X(1) + W, RIDGE.at(-1)[1] * H); ctx.lineTo(X(1) + W, H); ctx.lineTo(X(0) - W, H); ctx.closePath();
-  ctx.fillStyle = face; ctx.fill();
-}
-function drawVines() {
-  // our rows in the foreground, running away toward the mountain
-  const top = BASE * H - 8;
-  ctx.fillStyle = '#23402F'; ctx.beginPath();
-  ctx.moveTo(0, top + 20); ctx.quadraticCurveTo(W * .5, top - 18, W, top + 10); ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.fill();
-  // rows seen side-on, bunching up toward the mountain
-  ctx.strokeStyle = 'rgba(201,207,122,.1)'; ctx.lineWidth = 1;
-  for (let i = 1; i < 14; i++) {
-    const y = top + 14 + (H - top) * (i / 14) ** 1.8;
-    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-  }
-}
-function step() {
-  const fall = (BASE - TOP_Y) * H;
-  for (let i = 0; i < particles.length; i++) {
-    const p = particles[i];
-    p.age++;
-    // rest on the table first, then pour over the edge toward the viewer
-    if (p.age > p.rest) p.vy += .012;
-    p.vy = Math.min(p.vy, p.max);
-    const dx = p.x - pointer.x, dy = p.y - pointer.y, d2 = dx * dx + dy * dy;
-    if (d2 < 180 * 180) { const f = 1 - Math.sqrt(d2) / 180; p.vx += pointer.vx * .03 * f; p.vy += pointer.vy * .03 * f; }
-    p.vx *= .985;
-    p.x += p.vx; p.y += p.vy;
-    const drop = (p.y - TOP_Y * H) / fall; // cloud evaporates as it sinks into warmer air
-    const target = drop < 0 ? 1 : clamp01(1 - drop * 2.2);
-    p.a = Math.min(target, p.a + .02);
-    if (drop > .5 || p.a <= 0 && p.age > 60 || p.x < -200 || p.x > W + 200) particles[i] = spawn(false);
-  }
-}
-function render() {
-  drawMountain();
-  for (const p of particles) {
-    ctx.globalAlpha = p.a * .55;
-    // faster particles stretch into streaks, like the cloud sliding down the face
-    const h = p.r * (.8 + p.vy * .9);
-    ctx.drawImage(blob, p.x - p.r, p.y - h / 2, p.r * 2, h);
-  }
-  ctx.globalAlpha = 1;
-  drawVines();
-}
-
-const windOut = document.getElementById('windSpeed');
-
-let running = true, frame = 0;
-function tick() {
-  if (running) {
-    step(); render();
-    pointer.vx *= .9; pointer.vy *= .9;
-    wind = lerp(wind, Math.min(Math.hypot(pointer.vx, pointer.vy) / 30, 1), .08);
-    if (++frame % 12 === 0) windOut.textContent = Math.round(38 + wind * 40) + ' km/h';
-  }
-  requestAnimationFrame(tick);
-}
-addEventListener('pointermove', e => {
-  const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-  if (pointer.t) { pointer.vx = lerp(pointer.vx, x - pointer.x, .5); pointer.vy = lerp(pointer.vy, y - pointer.y, .5); }
-  pointer.x = x; pointer.y = y; pointer.t = 1;
-}, { passive: true });
-new IntersectionObserver(([e]) => { running = e.isIntersecting && !reduced; }).observe(canvas);
-addEventListener('resize', () => { resize(); if (reduced) settle(); });
-// reduced motion: simulate once, draw a still frame
-function settle() { for (let i = 0; i < 400; i++) step(); render(); }
-
-makeBlob(); resize();
-if (reduced) settle();
-tick();
+// slim bar appears once the masthead has gone
+const bar = document.querySelector('.bar');
+ScrollTrigger.create({ trigger: '.hero', start: 'bottom 60px', onEnter: () => bar.classList.add('show'), onLeaveBack: () => bar.classList.remove('show') });
 
 // ---------- a February day ----------
 const CITY = [19,21,23,25,27,28,30,31,31,31,30,28,26,24,22];
 const VINE = [18,20,22,24,25,26,27,26,23,22,21,20,19,18,17];
-const SKY = [[6,'#9C8584'],[8,'#6F8A9C'],[12,'#557C98'],[14,'#6E7F8A'],[17,'#647480'],[19,'#8C665C'],[20,'#3A4250']];
-const hexMix = (a, b, t) => '#' + [1,3,5].map(i => Math.round(lerp(parseInt(a.substr(i,2),16), parseInt(b.substr(i,2),16), t)).toString(16).padStart(2,'0')).join('');
+const SKY = [[6,'#B08A84'],[8,'#7E9AAE'],[12,'#5F8BAA'],[14,'#8A989F'],[17,'#7F8C96'],[19,'#B07A5E'],[20,'#3A4250']];
 const at = (arr, h) => { const i = Math.min(Math.floor(h - 6), arr.length - 2), t = h - 6 - i; return lerp(arr[i], arr[i + 1], t); };
 const day = document.getElementById('day'), clockEl = document.getElementById('clock');
 const tCity = document.getElementById('tCity'), tVine = document.getElementById('tVine');
 const bCity = document.getElementById('bCity'), bVine = document.getElementById('bVine');
-const sun = document.getElementById('sun'), dayCloud = document.getElementById('dayCloud');
 const beats = [...document.querySelectorAll('#beats li')];
-// The scene is cropped to fit the screen (phones only see its middle), so the sun's arc is fitted
-// to the visible part: up from behind the ridge, peaking just under the text.
-const beatsEl = document.getElementById('beats');
-let sunPath, lastHour = 6;
-const sceneSvg = document.querySelector('.day-scene svg');
-function layoutSun() {
-  const r = sceneSvg.getBoundingClientRect(), sc = Math.max(r.width / 1600, r.height / 900);
-  const left = 800 - r.width / sc / 2, svgY = y => 900 - r.height / sc + (y - r.top) / sc, R = 32;
-  const lo = 640;
-  const hi = Math.min(lo - 60, svgY(beatsEl.getBoundingClientRect().bottom + 20) + R);
-  sunPath = { x0: left + R + 24 / sc, x1: left + r.width / sc - R - 24 / sc, hi, lo };
-}
 function setHour(h) {
-  lastHour = h;
   const hh = Math.floor(h), mm = Math.floor((h - hh) * 60 / 10) * 10;
-  // Caslon has no tabular figures, so each digit gets a fixed-width slot to keep the clock still
   clockEl.innerHTML = [...String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0')].map(c => `<i>${c}</i>`).join('');
   const c = at(CITY, h), v = at(VINE, h);
   tCity.textContent = Math.round(c) + '°'; tVine.textContent = Math.round(v) + '°';
@@ -562,15 +460,10 @@ function setHour(h) {
   let k = SKY.findIndex(([sh]) => sh > h); if (k < 1) k = k === 0 ? 1 : SKY.length - 1;
   const [h0, c0] = SKY[k - 1], [h1, c1] = SKY[k];
   day.style.setProperty('--sky', hexMix(c0, c1, clamp01((h - h0) / (h1 - h0))));
-  const s = (h - 6) / 14; // sun arcs left to right
-  sun.setAttribute('cx', lerp(sunPath.x0, sunPath.x1, s));
-  sun.setAttribute('cy', sunPath.lo - Math.sin(s * Math.PI) * (sunPath.lo - sunPath.hi));
-  dayCloud.setAttribute('opacity', clamp01((h - 13.3) / 1.4) * .95);
   let on = 0; beats.forEach((b, i) => { if (h >= +b.dataset.h) on = i; });
   beats.forEach((b, i) => b.classList.toggle('on', i === on));
 }
-layoutSun(); setHour(6);
-addEventListener('resize', () => { layoutSun(); setHour(lastHour); });
+setHour(6);
 // one screen of scroll is enough to run the day; longer made it a chore to get past
 ScrollTrigger.create({ trigger: day, start: 'top top', end: '+=100%', pin: true, scrub: true, onUpdate: s => setHour(6 + s.progress * 14) });
 
