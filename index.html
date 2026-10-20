@@ -7,234 +7,195 @@
 <meta name="description" content="Cool-climate wines from the Constantia slopes, cooled every summer afternoon by the cloud the south-easter pours over Table Mountain.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,200..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400..700;1,400..700&display=block" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233E5363'/%3E%3Cpath d='M5 12h22M9 12v7M16 12v11M23 12v6' stroke='%23E6ECEE' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
 :root {
-  --fog: #E6ECEE;
-  --fog-2: #D3DDE1;
-  --ink: #1C2833;
-  --slate: #3E5363;
+  --paper: #F3F4F1;
+  --mist: #D5DAD8;
+  --ink: #22303A;
+  --muted: #56626B;
   --vine: #23402F;
-  --protea: #D9899A;
   --sauv: #C9CF7A;
-  --muted: #56636D;
-  --display: "Anybody", system-ui, sans-serif;
-  --body: "Newsreader", Georgia, serif;
+  --must: #7A1F33;
+  --serif: "Libre Caslon Text", Georgia, serif;
+  --display: "Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
   --gutter: clamp(16px, 4vw, 56px);
 }
 * { box-sizing: border-box; margin: 0; }
 html { -webkit-text-size-adjust: 100%; }
 body {
-  background: var(--fog);
+  background: var(--paper);
   color: var(--ink);
-  font: 400 1.1875rem/1.6 var(--body);
-  font-optical-sizing: auto;
+  font: 400 1.1875rem/1.65 var(--serif);
+  font-variant-numeric: oldstyle-nums;
   overflow-x: hidden;
 }
 img, svg, canvas { display: block; }
-a { color: inherit; }
-:focus-visible { outline: 3px solid var(--protea); outline-offset: 3px; border-radius: 2px; }
-.skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--fog); padding: 8px 14px; z-index: 50; }
+a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+:focus-visible { outline: 2px solid var(--must); outline-offset: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--paper); padding: 8px 14px; z-index: 50; }
 .skip:focus { left: 8px; }
-.wrap { padding-inline: var(--gutter); max-width: 1320px; margin-inline: auto; }
-h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: .95; letter-spacing: -.01em; }
-h2 { font-size: clamp(2.6rem, 7vw, 6rem); font-variation-settings: "wdth" 70; }
-.lede { font-size: clamp(1.2rem, 1.8vw, 1.45rem); max-width: 34ch; color: var(--muted); }
+.wrap { padding-inline: var(--gutter); max-width: 1240px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; }
+h2 { font-size: clamp(2.4rem, 4.6vw, 3.9rem); letter-spacing: -.01em; margin-bottom: .45em; }
+h3 { font-size: 1.65rem; }
+.lede { font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.45; max-width: 30em; }
 .btn {
-  display: inline-block; font: 600 1rem/1 var(--display); font-variation-settings: "wdth" 110;
-  padding: 15px 22px; border-radius: 999px; background: var(--ink); color: var(--fog);
-  text-decoration: none; border: 0; cursor: pointer; transition: background .2s; white-space: nowrap;
+  display: inline-block; font: 700 1.05rem/1 var(--serif); padding: 16px 26px; border: 0; border-radius: 2px;
+  background: var(--must); color: var(--paper); text-decoration: none; cursor: pointer; transition: background .2s;
 }
-.btn:hover { background: var(--slate); }
+.btn:hover { background: #5F1727; }
 
-/* nav */
-.nav {
-  position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; gap: 28px;
-  padding: 18px var(--gutter); color: var(--fog); transition: color .3s, background .3s;
-}
-.nav.solid { color: var(--ink); background: color-mix(in srgb, var(--fog) 88%, transparent); backdrop-filter: blur(10px); }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 700 1.25rem/1 var(--display); font-variation-settings: "wdth" 125; margin-right: auto; }
-.brand svg { width: 34px; height: 22px; }
-.nav a:not(.brand):not(.btn) { text-decoration: none; font: 500 1rem/1 var(--display); }
-.nav a:not(.brand):not(.btn):hover { text-decoration: underline; text-underline-offset: 5px; }
-.nav .btn { background: var(--fog); color: var(--ink); padding: 11px 18px; }
-.nav.solid .btn { background: var(--ink); color: var(--fog); }
+/* nav: the wordmark only appears once the big one in the hero has scrolled away */
+.nav { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: baseline; gap: 28px; padding: 18px var(--gutter); transition: background .3s, box-shadow .3s; }
+.nav.solid { background: var(--paper); box-shadow: 0 1px 0 var(--mist); }
+.brand { font: 400 1.65rem/1 var(--display); text-decoration: none; margin-right: auto; transition: opacity .3s, visibility .3s; }
+.nav:not(.solid):not(.open) .brand { opacity: 0; visibility: hidden; }
+.nav a:not(.brand) { text-decoration: none; font-size: 1.05rem; }
+.nav a:not(.brand):hover, .nav a.book { text-decoration: underline; }
+.nav a.book { color: var(--must); font-weight: 700; }
 .nav-links { display: flex; gap: 28px; }
-.menu-btn { display: none; font: 600 .95rem/1 var(--display); padding: 10px 14px; border-radius: 999px; border: 1.5px solid currentColor; background: none; color: inherit; cursor: pointer; }
+.menu-btn { display: none; font: 400 1.05rem/1 var(--serif); padding: 6px 0; border: 0; background: none; color: inherit; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
 
-/* hero */
-.hero { position: relative; height: 100svh; min-height: 560px; background: #9FB3BE; overflow: hidden; color: var(--fog); }
+/* hero: the canvas is transparent above the ridge, so the mountain and cloud sit in front of the name */
+.hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: linear-gradient(#93AABA, #C9D5DB 55%, #DCE3E6); }
+.hero h1 { position: absolute; inset: clamp(64px, 10vh, 110px) 0 auto; text-align: center; font-size: min(20.5vw, 30vh); line-height: .8; letter-spacing: -.02em; }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-copy { position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(28px, 6vh, 64px); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px; }
-.hero h1 { font-size: clamp(3.2rem, 8vw, 7.8rem); font-weight: 700; line-height: .86; text-wrap: balance; }
-.hero p { max-width: 30ch; font-size: 1.15rem; line-height: 1.45; }
-.wind-note { position: absolute; top: 88px; right: var(--gutter); font: 500 .95rem/1.3 var(--display); text-align: right; opacity: .85; }
-.wind-note b { display: block; font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-
-/* intro */
-.intro { padding-block: clamp(90px, 14vw, 180px); display: grid; grid-template-columns: 1.1fr 1fr; gap: 6vw; align-items: start; }
-.intro h2 { font-variation-settings: "wdth" 62; }
-.intro p + p { margin-top: 1em; }
-.intro .facts { margin-top: 40px; display: grid; grid-template-columns: repeat(3, auto); gap: 8px 36px; justify-content: start; }
-.facts dt { font-size: .95rem; color: var(--muted); }
-.facts dd { font: 700 2rem/1 var(--display); font-variation-settings: "wdth" 80; grid-row: 1; }
-
-/* day */
-.day { position: relative; height: 100svh; min-height: 600px; overflow: hidden; color: var(--fog); background: var(--sky, #7d97a8); }
-.day-inner { position: relative; height: 100%; display: grid; grid-template-columns: 1.15fr 1fr; gap: 4vw; padding-block: 96px 48px; align-items: center; }
-.day-scene { position: absolute; inset: 0; pointer-events: none; }
-.day-scene svg { width: 100%; height: 100%; overflow: visible; }
-.day-head { font: 600 1rem/1.3 var(--display); opacity: .85; margin-bottom: 8px; }
-.clock { font: 700 clamp(5rem, 15vw, 13rem)/.85 var(--display); font-variation-settings: "wdth" 60; font-variant-numeric: tabular-nums; }
-.temps { display: flex; gap: 34px; margin-top: 30px; }
-.temp { min-width: 9.5ch; }
-.temp span { display: block; font-size: 1rem; opacity: .85; }
-.temp b { font: 700 3.4rem/1 var(--display); font-variation-settings: "wdth" 75; font-variant-numeric: tabular-nums; }
-.temp i { display: block; height: 6px; border-radius: 3px; margin-top: 10px; background: currentColor; transform-origin: left; transform: scaleX(var(--t, .5)); }
-.temp.vineyard b, .temp.vineyard i { color: var(--sauv); }
-/* the backing keeps the beats readable when the white cloud slides behind them */
-.beats { list-style: none; padding: 18px 20px; border-radius: 14px; background: rgba(28, 40, 51, .62); display: grid; gap: 18px; max-width: 46ch; justify-self: end; }
-.beats li { display: grid; grid-template-columns: 4.2ch 1fr; gap: 14px; opacity: .35; transition: opacity .35s; line-height: 1.4; font-size: 1.05rem; }
-.beats li.on { opacity: 1; }
-.beats time { font: 700 1rem/1.4 var(--display); font-variant-numeric: tabular-nums; }
-
-/* wines */
-.wines { padding-block: clamp(90px, 12vw, 160px); }
-.wines header { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 56px; }
-.wine-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
-.wine { padding: 28px 22px 32px 0; display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px; }
-.wine + .wine { padding-left: 22px; border-left: 1px solid var(--fog-2); }
-.pour {
-  display: grid; justify-items: start; gap: 6px; margin-bottom: 10px; padding: 0; border: 0; background: none; color: inherit;
-  font: 500 .95rem/1.2 var(--display); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
-  -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
-}
-.pour:active { cursor: grabbing; }
-.pour .hint { color: var(--muted); }
-.glass { width: 110px; height: 183px; }
-.wine h3 { font-size: 2rem; font-variation-settings: "wdth" 85; }
-.wine .kind { font-style: italic; color: var(--muted); }
-.wine p { font-size: 1.02rem; }
-.wine .price { font: 700 1.15rem/1 var(--display); }
-
-/* visit */
-.visit { background: var(--vine); color: var(--fog); padding-block: clamp(90px, 12vw, 150px); }
-.visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; }
-.visit .lede { color: color-mix(in srgb, var(--fog) 75%, transparent); margin-top: 22px; }
-.hours { margin-top: 40px; display: grid; grid-template-columns: auto 1fr; gap: 6px 24px; font-size: 1.02rem; }
-.hours dt { font-family: var(--display); font-weight: 600; }
-form { display: grid; gap: 22px; }
-fieldset { border: 0; padding: 0; display: grid; gap: 10px; }
-legend, label { font: 600 1rem/1.3 var(--display); margin-bottom: 8px; }
-.option { font: 400 1rem/1.35 var(--body); margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 16px 18px; border: 1.5px solid color-mix(in srgb, var(--fog) 30%, transparent); border-radius: 14px; cursor: pointer; }
-.option:has(input:checked) { border-color: var(--sauv); background: color-mix(in srgb, var(--sauv) 12%, transparent); }
-.option input { accent-color: var(--sauv); width: 18px; height: 18px; }
-.option span { font-size: 1rem; line-height: 1.35; opacity: .85; }
-.option strong { opacity: 1; }
-.option strong { display: block; font-family: var(--display); font-weight: 600; }
-.option em { font: 700 1.05rem/1 var(--display); font-style: normal; }
-.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.field { display: grid; }
-input[type=text], input[type=email], input[type=date], input[type=number] {
-  font: 400 1.05rem/1.2 var(--body); color: var(--ink); background: var(--fog); border: 2px solid transparent; border-radius: 10px; padding: 13px 14px; width: 100%;
-}
-input:user-invalid { border-color: var(--protea); }
-.err { min-height: 1.3em; font-size: .95rem; color: #F2B8C3; margin-top: 4px; }
-.visit .btn { background: var(--sauv); color: var(--ink); justify-self: start; }
-.visit .btn:hover { background: var(--fog); }
-.demo { font-size: .92rem; opacity: .7; }
-.done { border: 1.5px solid var(--sauv); border-radius: 16px; padding: 32px; }
-.done:focus { outline: none; }
-.done h3 { font-size: 2.4rem; font-variation-settings: "wdth" 80; margin-bottom: 12px; }
+.hero-copy { position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(24px, 5vh, 52px); display: flex; justify-content: space-between; align-items: end; gap: 24px; color: var(--paper); }
+.hero-copy p { max-width: 26em; font-size: 1.15rem; line-height: 1.45; }
+.hero-copy .wind-note { text-align: right; font-style: italic; font-size: 1rem; }
+.wind-note b { display: block; font: 400 1.9rem/1.1 var(--display); font-variant-numeric: lining-nums; }
 
 /* about */
-.about { padding-block: clamp(90px, 12vw, 160px) 0; }
-.about-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 6vw; align-items: end; margin-bottom: 56px; }
-.about-head h2 { font-variation-settings: "wdth" 62; }
-.steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); counter-reset: step; }
-.steps li { counter-increment: step; padding: 24px 22px 0 0; }
-.steps li + li { padding-left: 22px; border-left: 1px solid var(--fog-2); }
-.steps h3 { font-size: 2rem; font-variation-settings: "wdth" 85; margin-bottom: 10px; }
-.steps h3::before { content: counter(step); display: block; font-size: 1rem; color: var(--muted); margin-bottom: 14px; font-variant-numeric: tabular-nums; }
-.steps p { font-size: 1.02rem; }
+.about { padding-block: clamp(96px, 13vw, 170px) clamp(72px, 9vw, 120px); }
+.about .lede { margin-bottom: 1.1em; }
+.about p:not(.lede) { max-width: 36em; }
+.about p + p:not(.lede) { margin-top: 1em; }
+
+/* day */
+.day { position: relative; height: 100svh; min-height: 600px; overflow: hidden; color: var(--paper); background: var(--sky, #6F8797); }
+.day-scene { position: absolute; inset: 0; pointer-events: none; }
+.day-scene svg { width: 100%; height: 100%; overflow: visible; }
+.day-inner { position: relative; height: 100%; padding-block: 100px 48px; display: grid; grid-template-columns: auto 1fr; align-content: start; column-gap: clamp(32px, 6vw, 96px); }
+.day .day-head { grid-column: 1 / -1; font: italic 400 1.15rem/1.3 var(--serif); margin-bottom: 6px; }
+.clock { font: 400 clamp(5rem, 14vw, 12rem)/.9 var(--display); font-variant-numeric: lining-nums; }
+.clock i { font-style: normal; display: inline-block; width: .6em; text-align: center; }
+.clock i:nth-child(3) { width: .32em; }
+.temps { display: flex; gap: 40px; align-self: end; padding-bottom: 1.4rem; }
+.temp { min-width: 7ch; }
+.temp span { display: block; font-size: 1rem; font-style: italic; }
+.temp b { font: 400 3.2rem/1 var(--display); font-variant-numeric: lining-nums; }
+.temp i { display: block; height: 3px; margin-top: 10px; background: currentColor; transform-origin: left; transform: scaleX(var(--t, .5)); }
+.temp.vineyard b, .temp.vineyard i { color: var(--sauv); }
+/* the current moment only, all in one cell so the block never changes height */
+.beats { grid-column: 1 / -1; list-style: none; padding: 0; margin-top: 22px; display: grid; max-width: 32em; }
+.beats li { grid-area: 1 / 1; font-size: clamp(1.25rem, 1.8vw, 1.5rem); line-height: 1.35; opacity: 0; transition: opacity .35s; }
+.beats li.on { opacity: 1; }
+.beats time { font-style: italic; font-variant-numeric: lining-nums; margin-right: .4em; }
 
 /* vineyard map */
-.estate { background: #DCE3D8; padding-block: clamp(90px, 12vw, 150px); }
-.estate header { display: grid; grid-template-columns: 1.1fr 1fr; gap: 6vw; align-items: end; margin-bottom: 48px; }
-.estate h2 { font-variation-settings: "wdth" 62; }
-.vy-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 4vw; align-items: start; }
+.estate { background: #E4E8E1; padding-block: clamp(96px, 12vw, 150px); }
+.estate header, .wines header { margin-bottom: 44px; }
+.vy-grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: start; }
 .map { margin: 0; }
-.map svg { width: 100%; height: auto; border-radius: 18px; background: #E9EDE3; --rows: 1; }
+.map svg { width: 100%; height: auto; background: #F1F2EC; border: 1px solid #C3C9BF; --rows: 1; }
 .map .blk { stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 1; cursor: pointer; transition: fill-opacity .25s, stroke-width .25s; }
 .map .blk.dim { fill-opacity: .35; }
 .map .blk.sel { stroke-width: 3.5; }
 .map .rows line { stroke: var(--vine); stroke-opacity: .55; stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: var(--rows); pointer-events: none; }
 .map .lane { fill: none; stroke: #B7A27A; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 2 8; }
-.map .tag { font: 600 15px/1 var(--display); fill: var(--ink); paint-order: stroke; stroke: #E9EDE3; stroke-width: 4px; pointer-events: none; }
-.map .note { font: italic 15px/1 var(--body); fill: var(--muted); }
-.map figcaption { margin-top: 14px; font-size: 1rem; color: var(--muted); }
-.map figcaption b { font: 700 1.6rem/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; margin-right: 4px; }
-.block-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-.block-list button { font: 600 .98rem/1 var(--display); padding: 11px 15px; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
-.block-list button[aria-pressed="true"] { background: var(--ink); color: var(--fog); }
-.block-info h3 { font-size: 2.4rem; font-variation-settings: "wdth" 80; margin-bottom: 18px; }
-.block-info dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 22px; margin-bottom: 18px; }
-.block-info dt { font: 600 1rem/1.5 var(--display); }
-.block-info dd { font-size: 1.05rem; }
-.block-info p { font-size: 1.05rem; max-width: 36ch; }
+.map .tag { font: 700 15px/1 var(--serif); fill: var(--ink); paint-order: stroke; stroke: #F1F2EC; stroke-width: 4px; pointer-events: none; }
+.map .note { font: italic 15px/1 var(--serif); fill: var(--muted); }
+.map figcaption { margin-top: 14px; font-size: 1.05rem; }
+.map figcaption b { display: inline-block; min-width: 1.75em; font: 400 1.9rem/1 var(--display); font-variant-numeric: lining-nums; }
+.block-list { display: grid; margin-bottom: 28px; border-top: 1px solid #C3C9BF; }
+.block-list button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid #C3C9BF; background: none; color: var(--ink); font: 400 1.15rem/1.2 var(--serif); text-align: left; cursor: pointer; }
+.block-list button::before { content: ""; flex: none; width: 14px; height: 14px; background: var(--c); border: 1px solid var(--ink); }
+.block-list button:hover { text-decoration: underline; text-underline-offset: .2em; }
+.block-list button[aria-pressed="true"] { font-weight: 700; }
+.block-info h3 { font-size: 2rem; margin-bottom: 14px; }
+.block-info dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 22px; margin-bottom: 16px; }
+.block-info dt { font-style: italic; color: var(--muted); }
+.block-info p { max-width: 30em; }
+
+/* wines: a tasting list */
+.wines { padding-block: clamp(96px, 12vw, 160px); }
+.wine-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 80px); }
+.wine { display: grid; grid-template-columns: auto 1fr; align-content: start; gap: 0 26px; padding-block: 32px; border-top: 1px solid var(--mist); }
+.pour {
+  grid-row: 1 / span 3; display: grid; justify-items: start; gap: 6px; padding: 0; border: 0; background: none; color: inherit;
+  font: italic 400 .95rem/1.2 var(--serif); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+  -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
+}
+.pour:active { cursor: grabbing; }
+.pour .hint { color: var(--muted); }
+.glass { width: 110px; height: 183px; }
+.wine-name { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.wine h3 { font-size: 1.9rem; }
+.wine .price { font: 400 1.4rem/1 var(--display); font-variant-numeric: lining-nums; }
+.wine .kind { font-style: italic; color: var(--muted); margin: 2px 0 10px; }
+.wine p { font-size: 1.05rem; }
+
+/* visit */
+.visit { background: var(--vine); color: var(--paper); padding-block: clamp(90px, 12vw, 150px); }
+.visit-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6vw; }
+.hours { margin-top: 40px; display: grid; grid-template-columns: auto 1fr; gap: 6px 24px; }
+.hours dt { font-style: italic; }
+form { display: grid; gap: 22px; }
+fieldset { border: 0; padding: 0; display: grid; }
+legend, label { font: 700 1rem/1.3 var(--serif); margin-bottom: 8px; }
+.option { font: 400 1.02rem/1.35 var(--serif); margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(243, 244, 241, .25); cursor: pointer; }
+.option:first-of-type { border-top: 1px solid rgba(243, 244, 241, .25); }
+.option input { accent-color: var(--sauv); width: 18px; height: 18px; }
+.option span { opacity: .85; }
+.option strong { display: block; opacity: 1; }
+.option:has(input:checked) strong { color: var(--sauv); }
+.option em { font: 400 1.25rem/1 var(--display); font-style: normal; font-variant-numeric: lining-nums; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: grid; }
+input[type=text], input[type=email], input[type=date], input[type=number] {
+  font: 400 1.05rem/1.2 var(--serif); font-variant-numeric: lining-nums; color: var(--ink); background: var(--paper); border: 2px solid transparent; border-radius: 2px; padding: 13px 14px; width: 100%;
+}
+input:user-invalid { border-color: #F2B8C3; }
+.err { min-height: 1.3em; font-size: .95rem; color: #F2B8C3; margin-top: 4px; }
+.visit .btn { background: var(--sauv); color: var(--ink); justify-self: start; }
+.visit .btn:hover { background: var(--paper); }
+.demo { font-size: .92rem; opacity: .75; }
+.done { border: 1px solid var(--sauv); border-radius: 2px; padding: 32px; }
+.done:focus { outline: none; }
+.done h3 { font-size: 2.2rem; margin-bottom: 12px; }
 
 footer { padding-block: 56px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 1rem; color: var(--muted); }
 
+@media (hover: none) { .wind-note .how { display: none; } }
 @media (max-width: 900px) {
   .menu-btn { display: inline-block; }
-  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 4px var(--gutter) 14px; background: var(--fog); color: var(--ink); border-bottom: 1px solid var(--fog-2); }
-  .nav.open { background: var(--fog); color: var(--ink); }
-  .nav.open .btn { background: var(--ink); color: var(--fog); }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 4px var(--gutter) 14px; background: var(--paper); border-bottom: 1px solid var(--mist); }
+  .nav.open { background: var(--paper); }
   .nav.open .nav-links { display: flex; }
-  .nav-links a { padding: 14px 0; font-size: 1.2rem !important; border-bottom: 1px solid var(--fog-2); }
+  .nav-links a { padding: 14px 0; font-size: 1.25rem !important; border-bottom: 1px solid var(--mist); }
   .nav-links a:last-child { border-bottom: 0; }
-  .hero-copy { grid-template-columns: 1fr; }
-  .wind-note { display: none; }
-  .intro, .visit-grid { grid-template-columns: 1fr; }
-  .day-inner { grid-template-columns: 1fr; align-content: center; gap: 28px; }
-  /* one cell for all beats so the block never changes height */
-  .beats { justify-self: stretch; max-width: none; padding: 12px 14px; border-radius: 12px; }
-  .beats li { grid-area: 1 / 1; }
-  .beats li:not(.on) { opacity: 0; }
-  .temps { gap: 22px; }
-  .wine-list { grid-template-columns: 1fr 1fr; }
-  .about-head, .estate header, .vy-grid { grid-template-columns: 1fr; }
-  .about-head { gap: 20px; }
-  .steps { grid-template-columns: 1fr 1fr; }
-  .steps li:nth-child(3) { padding-left: 0; border-left: 0; }
-  .steps li:nth-child(n+3) { margin-top: 28px; border-top: 1px solid var(--fog-2); }
-  .wine:nth-child(3) { padding-left: 0; border-left: 0; }
-  .wine:nth-child(n+3) { border-top: 1px solid var(--fog-2); }
+  .hero-copy .wind-note { display: none; }
+  .visit-grid, .vy-grid { grid-template-columns: 1fr; }
+  .day-inner { grid-template-columns: 1fr; }
+  .temps { gap: 28px; padding-bottom: 0; margin-top: 18px; }
+  .wine-list { grid-template-columns: 1fr; }
 }
-/* short phone screens (Safari with its toolbars showing): drop the scene so the cloud clears the temperatures */
+/* short phone screens (Safari with its toolbars showing): drop the scene so the cloud clears the text */
 @media (max-width: 900px) and (max-height: 780px) {
   .day-scene { top: 16%; }
 }
 @media (max-width: 520px) {
   body { font-size: 1.1rem; }
-  .nav { gap: 12px; }
-  .brand { font-size: 1.1rem; }
-  .nav .btn { padding: 10px 14px; font-size: .92rem; }
-  .wine-list { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr; }
-  .steps li + li { padding-left: 0; border-left: 0; margin-top: 24px; border-top: 1px solid var(--fog-2); }
+  .nav { gap: 18px; }
+  .nav .book .long { display: none; }
   .map .tag { font-size: 19px; }
   .map .note { font-size: 24px; }
-  .nav .btn .long { display: none; }
-  .wine + .wine { padding-left: 0; border-left: 0; border-top: 1px solid var(--fog-2); }
   .glass { width: 88px; height: 146px; }
+  .wine { gap: 0 16px; }
+  .wine h3 { font-size: 1.6rem; }
   .row { grid-template-columns: 1fr; }
-  .intro .facts { grid-template-columns: repeat(3, auto); gap: 6px 20px; }
-  .facts dd { font-size: 1.6rem; }
-}
-@media (max-width: 360px) {
-  .brand span { display: none; }
 }
 </style>
 </head>
@@ -242,63 +203,40 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
 <a class="skip" href="#main">Skip to content</a>
 
 <nav class="nav" aria-label="Main">
-  <a class="brand" href="#top" aria-label="Tablecloth, home">
-    <svg viewBox="0 0 34 22" aria-hidden="true"><path d="M2 6h30M7 6v8M13 6v12M20 6v9M27 6v6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-    <span>Tablecloth</span>
-  </a>
+  <a class="brand" href="#top">Tablecloth</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
   <div class="nav-links" id="navLinks">
     <a href="#about">About</a>
-    <a href="#cloud">The cloud</a>
+    <a href="#day">The cloud</a>
     <a href="#vineyard">Vineyard</a>
     <a href="#wines">Wines</a>
-    <a href="#visit">Visit</a>
   </div>
-  <a class="btn" href="#visit" aria-label="Book a tasting">Book<span class="long"> a tasting</span></a>
+  <a class="book" href="#visit">Book<span class="long"> a tasting</span></a>
 </nav>
 
 <main id="main">
   <section class="hero" id="top" aria-label="Introduction">
+    <h1>Tablecloth</h1>
     <canvas id="sky" aria-hidden="true"></canvas>
-    <p class="wind-note" aria-hidden="true">South-easter<b id="windSpeed">38 km/h</b>move your cursor to blow</p>
     <div class="hero-copy">
-      <h1>Grown under the tablecloth</h1>
-      <p>Cool-climate wine from the Constantia slopes, made in the shade of Table Mountain's famous cloud.</p>
+      <p>A wine estate in Constantia, on the cool side of Table Mountain, under the cloud Capetonians call the tablecloth.</p>
+      <p class="wind-note" aria-hidden="true">South-easter<b id="windSpeed">38 km/h</b><span class="how">Move your cursor to blow the cloud</span></p>
     </div>
   </section>
 
   <section class="wrap about" id="about" aria-labelledby="aboutTitle">
-    <div class="about-head">
-      <h2 id="aboutTitle">A farm that makes wine</h2>
-      <p class="lede">Tablecloth is a family wine estate in Constantia, on the cool side of Table Mountain. We grow our own grapes, make the wine in our cellar on the farm, and pour it for visitors at the cellar door.</p>
-    </div>
-    <ol class="steps">
-      <li><h3>Grow</h3><p>34 hectares of vines on the slope below the mountain. Every grape in every bottle is grown here.</p></li>
-      <li><h3>Pick</h3><p>By hand, at dawn, in February and March. Each block is picked on the day it tastes ready.</p></li>
-      <li><h3>Make</h3><p>In the cellar at the bottom of the farm, a few hundred metres from the vines. About 60,000 bottles a year.</p></li>
-      <li><h3>Pour</h3><p>At the cellar door six days a week, with tastings, vineyard walks and long lunches between the rows.</p></li>
-    </ol>
-  </section>
-
-  <section class="wrap intro" id="cloud" aria-labelledby="introTitle">
-    <h2 id="introTitle">The wind does half the work</h2>
-    <div>
-      <p class="lede">Most summer afternoons, the south-easter drags a cloud over Table Mountain. Capetonians call it the tablecloth.</p>
-      <p>From the city it looks like a postcard. From our rows on the far side of the ridge it's a cold front that arrives at two o'clock and stays until dark. Our grapes ripen slowly, keep their acidity, and taste of the place they grew.</p>
-      <dl class="facts">
-        <dt>Planted</dt><dd>1891</dd>
-        <dt>Hectares</dt><dd>34</dd>
-        <dt>Cooler than town</dt><dd>&minus;7&deg;</dd>
-      </dl>
-    </div>
+    <h2 id="aboutTitle">About Tablecloth</h2>
+    <p class="lede">We are a family wine farm in Constantia, on the far side of Table Mountain from the city. Vines have grown on this slope since 1891.</p>
+    <p>Most summer afternoons the south-easter drags a cloud over the top of the mountain. From town it looks like a postcard. From our rows it's a cold front that arrives at about two o'clock and stays until dark, so the vineyard runs around seven degrees cooler than the city. The grapes ripen slowly and keep their acidity.</p>
+    <p>Everything happens on the farm. We grow 34 hectares of vines, pick them by hand at dawn in February and March, make about 60,000 bottles a year in the cellar at the bottom of the slope, and pour them at the cellar door six days a week.</p>
   </section>
 
   <section class="day" id="day" aria-labelledby="dayTitle">
     <div class="day-scene" aria-hidden="true">
       <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
         <defs><filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14"/></filter></defs>
-        <circle id="sun" cx="200" cy="760" r="32" fill="#F6E9B8" opacity=".6"/>
-        <path d="M0 770 L160 700 L260 575 L320 610 L420 582 L1150 578 L1230 655 L1310 668 L1380 612 L1430 610 L1490 660 L1600 710 V900 H0Z" fill="#3E5363" opacity=".8"/>
+        <circle id="sun" cx="200" cy="760" r="32" fill="#F6E9B8" opacity=".75"/>
+        <path d="M0 770 L160 700 L260 575 L320 610 L420 582 L1150 578 L1230 655 L1310 668 L1380 612 L1430 610 L1490 660 L1600 710 V900 H0Z" fill="#3E5363"/>
         <g id="dayCloud" opacity="0" filter="url(#soft)" fill="#F3F6F7">
           <ellipse cx="785" cy="572" rx="390" ry="26"/>
           <path d="M410 580 Q460 650 480 690 Q560 630 620 680 Q700 620 760 700 Q840 630 920 680 Q1000 620 1060 690 Q1110 640 1160 580Z" opacity=".75"/>
@@ -307,20 +245,18 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
       </svg>
     </div>
     <div class="wrap day-inner">
-      <div>
-        <h2 class="day-head" id="dayTitle">A February day, same mountain, two temperatures</h2>
-        <p class="clock" aria-live="off"><span id="clock">06:00</span></p>
-        <div class="temps">
-          <div class="temp"><span>City Bowl</span><b id="tCity">19&deg;</b><i id="bCity"></i></div>
-          <div class="temp vineyard"><span>Our rows</span><b id="tVine">18&deg;</b><i id="bVine"></i></div>
-        </div>
+      <h2 class="day-head" id="dayTitle">A February day in town and in our vineyard</h2>
+      <p class="clock" aria-live="off"><span id="clock">06:00</span></p>
+      <div class="temps">
+        <div class="temp"><span>City Bowl</span><b id="tCity">19&deg;</b><i id="bCity"></i></div>
+        <div class="temp vineyard"><span>Our rows</span><b id="tVine">18&deg;</b><i id="bVine"></i></div>
       </div>
       <ol class="beats" id="beats">
-        <li data-h="6"><time>06:00</time><span>Mist in the low rows. Picking starts by headlamp.</span></li>
-        <li data-h="10"><time>10:00</time><span>Heat builds on both sides of the mountain. The city heads for the beach.</span></li>
-        <li data-h="13.5"><time>13:30</time><span>The south-easter arrives. The cloud spills over the ridge and slides down toward the vines.</span></li>
-        <li data-h="16"><time>16:00</time><span>Town peaks at 31&deg;. Under the cloud we're at 22&deg; and falling.</span></li>
-        <li data-h="18.5"><time>18:30</time><span>Cool air settles in the vineyard for the night. The grapes keep their acidity.</span></li>
+        <li data-h="6"><time>06:00</time>Mist in the low rows. Picking starts by headlamp.</li>
+        <li data-h="10"><time>10:00</time>Heat builds on both sides of the mountain. The city heads for the beach.</li>
+        <li data-h="13.5"><time>13:30</time>The south-easter arrives. The cloud spills over the ridge and slides down toward the vines.</li>
+        <li data-h="16"><time>16:00</time>Town peaks at 31&deg;. Under the cloud we're at 22&deg; and falling.</li>
+        <li data-h="18.5"><time>18:30</time>Cool air settles in the vineyard for the night. The grapes keep their acidity.</li>
       </ol>
     </div>
   </section>
@@ -328,7 +264,7 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
   <section class="estate" id="vineyard" aria-labelledby="vineyardTitle">
     <div class="wrap">
       <header>
-        <h2 id="vineyardTitle">Every grape comes from this slope</h2>
+        <h2 id="vineyardTitle">Where each wine grows</h2>
         <p class="lede">We don't buy in grapes. Each wine comes from its own block on the farm, picked by hand and driven a few hundred metres down to the cellar.</p>
       </header>
       <div class="vy-grid">
@@ -338,7 +274,7 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
             <defs><filter id="mapCloud" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="10"/></filter></defs>
             <path d="M0 0 H800 V92 L712 108 L640 84 L560 96 L250 90 L180 62 L110 98 L0 84Z" fill="#7C8F9C"/>
             <path d="M0 0 H800 V58 L712 72 L640 52 L560 62 L250 56 L180 30 L110 64 L0 52Z" fill="#62788A"/>
-            <text class="tag" x="22" y="34" style="fill:#E9EDE3;stroke:none">Table Mountain</text>
+            <text class="tag" x="22" y="34" style="fill:#F1F2EC;stroke:none">Table Mountain</text>
             <g filter="url(#mapCloud)" fill="#fff" opacity=".85"><ellipse cx="400" cy="96" rx="430" ry="34"/><ellipse cx="420" cy="140" rx="300" ry="26" opacity=".6"/></g>
             <line x1="20" y1="206" x2="780" y2="206" stroke="#6E8090" stroke-width="1.5" stroke-dasharray="6 6"/>
             <line x1="22" y1="500" x2="58" y2="500" stroke="#6E8090" stroke-width="1.5" stroke-dasharray="6 6"/>
@@ -365,37 +301,33 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
 
   <section class="wrap wines" id="wines" aria-labelledby="winesTitle">
     <header>
-      <h2 id="winesTitle">Four wines, one cloud</h2>
-      <p class="lede">Small runs, all from our own vines, all poured at the cellar door.</p>
+      <h2 id="winesTitle">Our wines</h2>
+      <p class="lede">Four small runs, all from our own vines. Hold a glass to pour it.</p>
     </header>
     <ul class="wine-list">
       <li class="wine" style="--wine:#E5DE93">
         <button class="pour" type="button"></button>
-        <h3>Southeaster</h3>
+        <div class="wine-name"><h3>Southeaster</h3><p class="price">R210</p></div>
         <p class="kind">Sauvignon blanc, 2025</p>
         <p>Picked on cloud days only. Green fig, wet stone and a sharp finish that wakes you up.</p>
-        <p class="price">R210</p>
       </li>
       <li class="wine" style="--wine:#D9C27A">
         <button class="pour" type="button"></button>
-        <h3>Fog Line</h3>
+        <div class="wine-name"><h3>Fog Line</h3><p class="price">R340</p></div>
         <p class="kind">S&eacute;millon, 2023</p>
         <p>From the 1950s block right where the cloud stops. Waxy lemon, beeswax and a long, quiet finish.</p>
-        <p class="price">R340</p>
       </li>
       <li class="wine" style="--wine:#8E2F3C">
         <button class="pour" type="button"></button>
-        <h3>Back Table</h3>
+        <div class="wine-name"><h3>Back Table</h3><p class="price">R395</p></div>
         <p class="kind">Pinot noir, 2024</p>
         <p>Grown on the steep south slope that sees the least sun. Sour cherry, fynbos and soft tannins.</p>
-        <p class="price">R395</p>
       </li>
       <li class="wine" style="--wine:#C8892E">
         <button class="pour" type="button"></button>
-        <h3>St Helena</h3>
+        <div class="wine-name"><h3>St Helena</h3><p class="price">R620</p></div>
         <p class="kind">Natural sweet Muscat, 2021, 375&nbsp;ml</p>
         <p>Named for the island where Napoleon kept asking for Constantia wine. Apricot, orange peel and honey.</p>
-        <p class="price">R620</p>
       </li>
     </ul>
   </section>
@@ -403,7 +335,7 @@ footer { padding-block: 56px; display: flex; justify-content: space-between; gap
   <section class="visit" id="visit" aria-labelledby="visitTitle">
     <div class="wrap visit-grid">
       <div>
-        <h2 id="visitTitle">Come for a tasting</h2>
+        <h2 id="visitTitle">Book a tasting</h2>
         <p class="lede">Twenty-five minutes from the city, on the cool side of the mountain. Book ahead on weekends.</p>
         <dl class="hours">
           <dt>Tue&ndash;Sun</dt><dd>10:00 to 17:00</dd>
@@ -518,9 +450,8 @@ function spawn(scatter) {
   return p;
 }
 function drawMountain() {
-  const sky = ctx.createLinearGradient(0, 0, 0, H);
-  sky.addColorStop(0, '#7E9AAD'); sky.addColorStop(.55, '#B9C9D1'); sky.addColorStop(1, '#D9E2E6');
-  ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+  // the sky is the hero's CSS background, so the name behind the canvas shows through
+  ctx.clearRect(0, 0, W, H);
   // mountain face, lighter where the afternoon light hits
   const face = ctx.createLinearGradient(0, TOP_Y * H, 0, BASE * H);
   face.addColorStop(0, '#4E6575'); face.addColorStop(1, '#2F4150');
@@ -534,10 +465,11 @@ function drawVines() {
   const top = BASE * H - 8;
   ctx.fillStyle = '#23402F'; ctx.beginPath();
   ctx.moveTo(0, top + 20); ctx.quadraticCurveTo(W * .5, top - 18, W, top + 10); ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.fill();
-  ctx.strokeStyle = 'rgba(201,207,122,.22)'; ctx.lineWidth = 1;
-  const vx = W * .52, vy = top - 60;
-  for (let i = -18; i <= 18; i++) {
-    ctx.beginPath(); ctx.moveTo(lerp(vx, W / 2 + i * W * .09, .1), lerp(vy, H, .1) + 12); ctx.lineTo(W / 2 + i * W * .09, H); ctx.stroke();
+  // rows seen side-on, bunching up toward the mountain
+  ctx.strokeStyle = 'rgba(201,207,122,.1)'; ctx.lineWidth = 1;
+  for (let i = 1; i < 14; i++) {
+    const y = top + 14 + (H - top) * (i / 14) ** 1.8;
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
   }
 }
 function step() {
@@ -599,7 +531,7 @@ tick();
 // ---------- a February day ----------
 const CITY = [19,21,23,25,27,28,30,31,31,31,30,28,26,24,22];
 const VINE = [18,20,22,24,25,26,27,26,23,22,21,20,19,18,17];
-const SKY = [[6,'#C7A9A6'],[8,'#8FA9BA'],[12,'#6F95B0'],[14,'#9AAAB3'],[17,'#8796A1'],[19,'#B8877A'],[20,'#4B5463']];
+const SKY = [[6,'#9C8584'],[8,'#6F8A9C'],[12,'#557C98'],[14,'#6E7F8A'],[17,'#647480'],[19,'#8C665C'],[20,'#3A4250']];
 const hexMix = (a, b, t) => '#' + [1,3,5].map(i => Math.round(lerp(parseInt(a.substr(i,2),16), parseInt(b.substr(i,2),16), t)).toString(16).padStart(2,'0')).join('');
 const at = (arr, h) => { const i = Math.min(Math.floor(h - 6), arr.length - 2), t = h - 6 - i; return lerp(arr[i], arr[i + 1], t); };
 const day = document.getElementById('day'), clockEl = document.getElementById('clock');
@@ -608,21 +540,22 @@ const bCity = document.getElementById('bCity'), bVine = document.getElementById(
 const sun = document.getElementById('sun'), dayCloud = document.getElementById('dayCloud');
 const beats = [...document.querySelectorAll('#beats li')];
 // The scene is cropped to fit the screen (phones only see its middle), so the sun's arc is fitted
-// to the visible part, between the nav and the heading.
-const dayTitle = document.getElementById('dayTitle');
+// to the visible part: up from behind the ridge, peaking just under the text.
+const beatsEl = document.getElementById('beats');
 let sunPath, lastHour = 6;
 const sceneSvg = document.querySelector('.day-scene svg');
 function layoutSun() {
   const r = sceneSvg.getBoundingClientRect(), sc = Math.max(r.width / 1600, r.height / 900);
   const left = 800 - r.width / sc / 2, svgY = y => 900 - r.height / sc + (y - r.top) / sc, R = 32;
-  const hi = svgY(day.getBoundingClientRect().top + nav.offsetHeight + 12) + R;
-  const lo = Math.max(hi, svgY(dayTitle.getBoundingClientRect().top - 16) - R);
+  const lo = 640;
+  const hi = Math.min(lo - 60, svgY(beatsEl.getBoundingClientRect().bottom + 20) + R);
   sunPath = { x0: left + R + 24 / sc, x1: left + r.width / sc - R - 24 / sc, hi, lo };
 }
 function setHour(h) {
   lastHour = h;
   const hh = Math.floor(h), mm = Math.floor((h - hh) * 60 / 10) * 10;
-  clockEl.textContent = String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0');
+  // Caslon has no tabular figures, so each digit gets a fixed-width slot to keep the clock still
+  clockEl.innerHTML = [...String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0')].map(c => `<i>${c}</i>`).join('');
   const c = at(CITY, h), v = at(VINE, h);
   tCity.textContent = Math.round(c) + '°'; tVine.textContent = Math.round(v) + '°';
   bCity.style.setProperty('--t', (c - 12) / 22); bVine.style.setProperty('--t', (v - 12) / 22);
@@ -672,7 +605,7 @@ const parts = BLOCKS.map((b, i) => {
   el('text', { class: 'tag', x: cx, y: cy + 5, 'text-anchor': 'middle' }, g).textContent = b.name;
   const crates = [0, 1, 2].map(() => el('circle', { r: 7, fill: b.color, stroke: 'var(--ink)', 'stroke-width': 1.5, opacity: 0 }, map.querySelector('#crates')));
   const btn = document.createElement('button');
-  btn.type = 'button'; btn.textContent = b.name; blockList.appendChild(btn);
+  btn.type = 'button'; btn.textContent = b.name; btn.style.setProperty('--c', b.color); blockList.appendChild(btn);
   poly.addEventListener('click', () => select(i)); btn.addEventListener('click', () => select(i));
   return { poly, lane, crates, btn, len: lane.getTotalLength() };
 });
