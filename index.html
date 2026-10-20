@@ -3,195 +3,204 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tablecloth Wine Estate, Constantia</title>
+<title>OOST, Constantia</title>
 <meta name="description" content="Cool-climate wines from the Constantia slopes, cooled every summer afternoon by the cloud the south-easter pours over Table Mountain.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400..700;1,400..700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/hero-2400.jpg" imagesrcset="img/hero-1200.jpg 1200w, img/hero-2400.jpg 2400w" imagesizes="100vw">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B2125'/%3E%3Cpath d='M5 12h22M9 12v7M16 12v11M23 12v6' stroke='%23EEF0EC' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='8.5' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
 <style>
 :root {
-  --stone: #E4E5E0;
-  --paper: #F1F2EE;
-  --ink: #23292D;
-  --muted: #5E6569;
-  --night: #1B2125;
-  --red: #A2392B;
-  --serif: "Libre Caslon Text", Georgia, serif;
-  --display: "Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
-  --gutter: clamp(20px, 5vw, 56px);
+  --black: #0B0B0B;
+  --white: #F4F3EF;
+  --grey: #8A8A86;
+  --paper: #ECEBE6;
+  --ink: #141414;
+  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --gutter: clamp(16px, 2.2vw, 32px);
 }
 * { box-sizing: border-box; margin: 0; }
 html { -webkit-text-size-adjust: 100%; }
-body { background: var(--stone); color: var(--ink); font: 400 1.0625rem/1.75 var(--serif); font-variant-numeric: oldstyle-nums; overflow-x: hidden; }
+body { background: var(--black); color: var(--white); font: 400 1rem/1.5 var(--sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 img, svg { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px; }
-:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
-.skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--paper); padding: 8px 14px; z-index: 50; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--white); color: var(--ink); padding: 8px 14px; z-index: 50; }
 .skip:focus { left: 8px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.pad { padding-inline: var(--gutter); }
+.label { font-size: .78rem; font-weight: 500; letter-spacing: .02em; }
+.pill { display: inline-flex; align-items: center; gap: .35em; padding: 7px 14px; border-radius: 99px; background: var(--white); color: var(--ink); font: 500 .8rem/1 var(--sans); border: 0; cursor: pointer; transition: background .2s, color .2s; }
+.pill::after { content: "›"; font-size: 1.1em; line-height: .8; }
+.pill:hover { background: var(--ink); color: var(--white); box-shadow: inset 0 0 0 1px var(--white); }
+/* the full-width wordmark: one letter per flex item, spread edge to edge */
+.mark { display: flex; justify-content: space-between; font: 400 clamp(6rem, 27vw, 30rem)/.78 var(--sans); letter-spacing: 0; }
 
-/* the engraved-caps voice: wordmark, nav and chapter titles only */
-.caps { font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: .16em; }
-.col { max-width: 35rem; margin-inline: auto; padding-inline: var(--gutter); box-sizing: content-box; }
-.wide { max-width: 68rem; margin-inline: auto; padding-inline: var(--gutter); }
-.col p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
-.col p + p { margin-top: 1em; }
+/* bar */
+.bar { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; gap: 28px; padding: 16px var(--gutter); transition: background .3s; }
+.bar.solid { background: var(--black); }
+.bar .home { font: 500 1.05rem/1 var(--sans); letter-spacing: .28em; margin-right: auto; opacity: 0; transition: opacity .3s; }
+.bar.solid .home { opacity: 1; }
+.bar nav { display: flex; gap: 24px; }
+.bar nav a:hover { text-decoration: underline; text-underline-offset: .25em; }
 
 /* hero */
-.hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: var(--night); }
-.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 38% 60%; animation: settle 2.8s cubic-bezier(.2, .7, .2, 1) both; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(238, 240, 236, .7), rgba(238, 240, 236, 0) 38%); pointer-events: none; }
-.masthead { position: relative; z-index: 1; padding-top: clamp(36px, 7vh, 72px); text-align: center; animation: fade 1.6s .5s both; }
-.masthead h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1; letter-spacing: .14em; margin-right: -.14em; }
-.masthead nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px clamp(18px, 4vw, 52px); margin-top: 18px; }
-.masthead nav a, .bar a { font: 400 .78rem/1.6 var(--serif); text-transform: uppercase; letter-spacing: .2em; text-decoration: none; }
-.masthead nav a:hover, .bar a:hover { text-decoration: underline; }
-@keyframes settle { from { transform: scale(1.07); } }
-@keyframes fade { from { opacity: 0; } }
+.hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 60%; animation: settle 2.6s cubic-bezier(.2, .7, .2, 1) both; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, .45)); }
+.hero-top { position: relative; z-index: 2; padding-top: clamp(64px, 11vh, 110px); text-align: center; }
+.hero .mark { animation: rise 1.4s .2s cubic-bezier(.2, .7, .2, 1) both; }
+.hero .place { margin-top: clamp(14px, 2vw, 26px); letter-spacing: .4em; margin-right: -.4em; }
+.hero-foot { position: absolute; z-index: 2; inset: auto 0 0; display: flex; justify-content: space-between; align-items: end; gap: 24px; padding-bottom: clamp(20px, 4vh, 36px); }
+.hero-foot p { font-size: clamp(1.1rem, 1.6vw, 1.4rem); line-height: 1.25; max-width: 20em; }
+@keyframes settle { from { transform: scale(1.08); } }
+@keyframes rise { from { opacity: 0; transform: translateY(6%); } }
 
-/* slim bar once the masthead has scrolled away */
-.bar { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: 14px var(--gutter); background: var(--stone); box-shadow: 0 1px 0 rgba(35, 41, 45, .12); transform: translateY(-100%); visibility: hidden; transition: transform .35s, visibility .35s; }
-.bar.show { transform: none; visibility: visible; }
-.bar .home { font: 400 1.05rem/1 var(--display); letter-spacing: .16em; }
-.bar .book { color: var(--red); }
+/* manifesto: words light up as you scroll past */
+.manifesto { padding-block: clamp(110px, 16vw, 220px); }
+.manifesto p { font: 400 clamp(1.7rem, 3.6vw, 3.4rem)/1.12 var(--sans); letter-spacing: -.02em; max-width: 22em; }
+.manifesto .w { color: #3D3D3B; transition: color .25s; }
+.manifesto .w.on { color: var(--white); }
+.manifesto .pill { margin-top: 36px; }
 
-/* prologue */
-.prologue { background: var(--night); color: var(--paper); padding-block: clamp(80px, 11vw, 140px); }
-.prologue h2, .sub, figcaption { font: italic 400 1.15rem/1.4 var(--serif); }
-.prologue h2 { text-align: center; margin-bottom: 1.4em; }
-.signature { margin-top: 28px; text-align: right; font: 400 2.6rem/1 "Mrs Saint Delafield", cursive; }
-.signature small { display: block; font: italic 400 .9rem/1.4 var(--serif); opacity: .7; margin-top: 4px; }
-.chapters { list-style: none; padding: 0; margin-top: 56px; display: grid; justify-content: center; gap: 10px; text-align: center; }
-.chapters a { font-size: .95rem; text-decoration: none; }
-.chapters a:hover { text-decoration: underline; }
-.chapters span, h2 .num { color: var(--red); margin-right: .5em; }
-.prologue .chapters span { color: #D9786A; }
+/* split: text one side, photo the other */
+.split { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; }
+.split > div { display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding-block: clamp(64px, 8vw, 110px) var(--gutter); }
+.split h2 { font: 400 clamp(1.8rem, 3vw, 2.8rem)/1.08 var(--sans); letter-spacing: -.02em; max-width: 13em; }
+.split .body { max-width: 26rem; margin-left: auto; color: #BDBCB7; font-size: .95rem; }
+.split .body p + p { margin-top: 1em; }
+.split figure { margin: 0; position: relative; }
+.split figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.visit .split figure img { object-position: 50% 88%; }
+.split figcaption { position: absolute; left: var(--gutter); bottom: var(--gutter); }
 
-/* chapters */
-.chapter { padding-block: clamp(80px, 10vw, 130px); }
-.chapter h2 { font-size: 1.3rem; line-height: 1.3; }
-.sub { color: var(--muted); margin: 4px 0 2em; }
-.print { float: right; width: 46%; margin: .4em -14% 1em 2em; padding: 10px; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 10px 28px rgba(0, 0, 0, .1); }
-.print.left { float: left; margin: .4em 2em 1em -14%; }
-.print figcaption { font-size: .9rem; color: var(--muted); margin-top: 8px; text-align: left; }
-.chapter .col::after { content: ""; display: block; clear: both; }
-.band { height: clamp(300px, 72vh, 760px); overflow: hidden; }
-.band img { width: 100%; height: 100%; object-fit: cover; }
-
-/* the day: a monochrome photo, washed in the colour of the sky at that hour */
-.day { position: relative; height: 100svh; min-height: 600px; overflow: hidden; color: var(--paper); background: var(--night); text-align: center; }
+/* the day */
+.day { position: relative; height: 100svh; min-height: 600px; overflow: hidden; text-align: center; }
 .day img, .day .tint { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.day .tint { background: linear-gradient(rgba(16, 20, 24, .38), rgba(16, 20, 24, .38)), var(--sky, #557C98); background-blend-mode: normal; mix-blend-mode: multiply; }
+.day .tint { background: linear-gradient(rgba(10, 12, 14, .45), rgba(10, 12, 14, .45)), var(--sky, #557C98); mix-blend-mode: multiply; }
 .day-inner { position: relative; height: 100%; display: grid; place-content: center; justify-items: center; padding-inline: var(--gutter); }
-.day h2 { font: italic 400 1.15rem/1.4 var(--serif); }
-.clock { font: 400 clamp(5rem, 15vw, 12rem)/1 var(--display); font-variant-numeric: lining-nums; margin: 10px 0 6px; }
-/* Caslon has no tabular figures, so each digit gets a fixed slot to keep the clock still */
-.clock i { font-style: normal; display: inline-block; width: .6em; text-align: center; }
-.clock i:nth-child(3) { width: .32em; }
-.temps { display: flex; gap: clamp(32px, 6vw, 72px); }
-.temp span { display: block; font-size: .95rem; font-style: italic; }
-.temp b { font: 400 2.8rem/1.1 var(--display); font-variant-numeric: lining-nums; }
+.clock { font: 300 clamp(5.5rem, 19vw, 17rem)/.9 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.04em; margin: 14px 0 18px; }
+.temps { display: flex; gap: clamp(36px, 7vw, 96px); }
+.temp span { display: block; }
+.temp b { font: 400 3rem/1.1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
 .temp i { display: block; height: 2px; margin: 8px auto 0; width: 100%; background: currentColor; transform: scaleX(var(--t, .5)); }
-.temp.vineyard b, .temp.vineyard i { color: #E0E39A; }
+.temp.vineyard b, .temp.vineyard i { color: #E3E69A; }
 /* the current moment only, all in one cell so the block never changes height */
-.beats { list-style: none; padding: 0; margin-top: 30px; display: grid; max-width: 30em; }
-.beats li { grid-area: 1 / 1; font-size: clamp(1.15rem, 1.7vw, 1.35rem); line-height: 1.45; opacity: 0; transition: opacity .35s; }
+.beats { list-style: none; padding: 0; margin-top: 30px; display: grid; max-width: 28em; }
+.beats li { grid-area: 1 / 1; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.4; opacity: 0; transition: opacity .35s; }
 .beats li.on { opacity: 1; }
-.beats time { font-style: italic; font-variant-numeric: lining-nums; margin-right: .4em; }
+.beats time { font-variant-numeric: tabular-nums; color: rgba(244, 243, 239, .6); margin-right: .5em; }
 
-/* vineyard map */
-.vy-grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; margin-top: 56px; }
-.map { margin: 0; padding: 10px; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 10px 28px rgba(0, 0, 0, .1); }
-.map svg { width: 100%; height: auto; background: var(--paper); --rows: 1; }
+/* vineyard */
+.estate { background: var(--paper); color: var(--ink); padding-block: clamp(90px, 11vw, 150px); }
+.head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 6vw, 80px); }
+.head h2 { font: 400 clamp(2.4rem, 6vw, 5.6rem)/.95 var(--sans); letter-spacing: -.035em; }
+.head p { max-width: 28rem; justify-self: end; color: #4A4A47; }
+.vy-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: start; }
+.map { margin: 0; }
+.map svg { width: 100%; height: auto; background: #F7F6F2; --rows: 1; }
 .map .blk { stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 1; cursor: pointer; transition: fill-opacity .25s, stroke-width .25s; }
 .map .blk.dim { fill-opacity: .35; }
 .map .blk.sel { stroke-width: 3; }
 .map .rows line { stroke: var(--ink); stroke-opacity: .45; stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: var(--rows); pointer-events: none; }
 .map .lane { fill: none; stroke: #9A8F7C; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 7; }
-.map .tag { font: 700 15px/1 var(--serif); fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; pointer-events: none; }
-.map .note { font: italic 15px/1 var(--serif); fill: var(--muted); }
-.map figcaption { font-size: 1rem; margin-top: 10px; padding-inline: 4px; color: var(--ink); font-style: normal; }
-.map figcaption b { display: inline-block; min-width: 1.75em; font: 400 1.7rem/1 var(--display); font-variant-numeric: lining-nums; }
-.block-list { display: grid; margin-bottom: 26px; border-top: 1px solid rgba(35, 41, 45, .2); }
-.block-list button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 0; border: 0; border-bottom: 1px solid rgba(35, 41, 45, .2); background: none; color: var(--ink); font: 400 1.05rem/1.2 var(--serif); text-align: left; cursor: pointer; }
-.block-list button::before { content: ""; flex: none; width: 12px; height: 12px; background: var(--c); border: 1px solid var(--ink); }
+.map .tag { font: 600 15px/1 var(--sans); fill: var(--ink); paint-order: stroke; stroke: #F7F6F2; stroke-width: 4px; pointer-events: none; }
+.map .note { font: 400 15px/1 var(--sans); fill: #6A6A66; }
+.map figcaption { margin-top: 14px; display: flex; align-items: baseline; gap: 12px; }
+.map figcaption b { font: 300 3rem/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.03em; min-width: 1.9em; }
+.block-list { display: grid; margin-bottom: 28px; border-top: 1px solid rgba(20, 20, 20, .2); }
+.block-list button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid rgba(20, 20, 20, .2); background: none; color: var(--ink); font: 400 1.05rem/1.2 var(--sans); text-align: left; cursor: pointer; }
+.block-list button::before { content: ""; flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
 .block-list button:hover { text-decoration: underline; text-underline-offset: .2em; }
-.block-list button[aria-pressed="true"] { font-weight: 700; }
-.block-info h3 { font: 400 1.7rem/1.1 var(--display); margin-bottom: 12px; }
+.block-list button[aria-pressed="true"] { font-weight: 600; }
+.block-info h3 { font: 400 2rem/1.05 var(--sans); letter-spacing: -.02em; margin-bottom: 14px; }
 .block-info dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 20px; margin-bottom: 14px; }
-.block-info dt { font-style: italic; color: var(--muted); }
+.block-info dt { color: #6A6A66; }
 
-/* wines */
-.wine-list { list-style: none; padding: 0; margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 72px); }
-.wine { display: grid; grid-template-columns: auto 1fr; align-content: start; gap: 0 24px; padding-block: 30px; border-top: 1px solid rgba(35, 41, 45, .2); }
+.band { height: clamp(300px, 80vh, 860px); overflow: hidden; }
+.band img { width: 100%; height: 100%; object-fit: cover; }
+
+/* wines: full-bleed colour panels that stack as you scroll */
+.wines-intro { padding-block: clamp(90px, 11vw, 150px) 48px; }
+.wines-intro .head p { color: #BDBCB7; }
+.wine-list { list-style: none; padding: 0; }
+.wine { position: sticky; top: 0; min-height: 100svh; background: var(--bg); color: var(--white); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 32px; padding-block: 90px 48px; }
+.wine-text { max-width: 34rem; }
+.wine h3 { font: 400 clamp(3rem, 8vw, 7.5rem)/.92 var(--sans); letter-spacing: -.04em; margin: 10px 0 22px; }
+.wine .notes { font-size: clamp(1.05rem, 1.4vw, 1.3rem); line-height: 1.35; max-width: 24em; }
+.wine .price { margin-top: 22px; font-variant-numeric: tabular-nums; }
 .pour {
-  grid-row: 1 / span 3; display: grid; justify-items: start; gap: 6px; padding: 0; border: 0; background: none; color: inherit;
-  font: italic 400 .9rem/1.2 var(--serif); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+  display: grid; justify-items: center; gap: 10px; padding: 0; border: 0; background: none; color: inherit;
+  font: 500 .8rem/1.2 var(--sans); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
   -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
 }
 .pour:active { cursor: grabbing; }
-.pour .hint { color: var(--muted); }
-.glass { width: 104px; height: 173px; }
-.wine-name { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.wine h3 { font: 400 1.7rem/1.1 var(--display); }
-.wine .price { font: 400 1.25rem/1 var(--display); font-variant-numeric: lining-nums; }
-.wine .kind { font-style: italic; color: var(--muted); margin: 2px 0 10px; }
-.wine p { font-size: 1rem; }
+.pour .hint { opacity: .75; }
+.glass { width: clamp(150px, 19vw, 260px); height: auto; aspect-ratio: 136 / 226; }
 
 /* visit */
-.visit { background: var(--night); color: var(--paper); padding-block: clamp(80px, 11vw, 140px); }
-.visit h2 { font-size: 1.3rem; line-height: 1.3; }
-.visit .sub { color: rgba(241, 242, 238, .7); }
-.visit-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(36px, 6vw, 88px); }
-.hours { margin-top: 32px; display: grid; grid-template-columns: auto 1fr; gap: 4px 22px; }
-.hours dt { font-style: italic; opacity: .75; }
-form { display: grid; gap: 22px; }
+.visit .split h2 { max-width: 11em; }
+.hours { display: grid; grid-template-columns: auto 1fr; gap: 6px 24px; font-size: .95rem; }
+.hours dt { color: var(--grey); }
+.booking { padding-block: clamp(80px, 9vw, 130px); border-top: 1px solid rgba(244, 243, 239, .12); }
+.booking .head h2 { font-size: clamp(2.2rem, 5vw, 4.4rem); }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 26px clamp(32px, 5vw, 80px); align-items: start; }
+.fields { display: grid; gap: 18px; }
 fieldset { border: 0; padding: 0; display: grid; }
-legend, label { font: italic 400 1rem/1.3 var(--serif); margin-bottom: 8px; }
-.option { font: 400 1rem/1.4 var(--serif); font-style: normal; margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(241, 242, 238, .2); cursor: pointer; }
-.option:first-of-type { border-top: 1px solid rgba(241, 242, 238, .2); }
-.option input { accent-color: var(--red); width: 17px; height: 17px; }
-.option span { opacity: .8; }
-.option strong { display: block; font-weight: 700; }
-.option em { font: 400 1.2rem/1 var(--display); font-style: normal; font-variant-numeric: lining-nums; }
+legend, label { font: 400 .85rem/1.3 var(--sans); color: var(--grey); margin-bottom: 8px; }
+.option { font: 400 1rem/1.4 var(--sans); color: var(--white); margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid rgba(244, 243, 239, .18); cursor: pointer; }
+.option:first-of-type { border-top: 1px solid rgba(244, 243, 239, .18); }
+.option input { accent-color: var(--white); width: 17px; height: 17px; }
+.option span { color: var(--grey); }
+.option strong { display: block; font-weight: 500; color: var(--white); }
+.option em { font-style: normal; font-variant-numeric: tabular-nums; }
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .field { display: grid; }
 input[type=text], input[type=email], input[type=date], input[type=number] {
-  font: 400 1.05rem/1.2 var(--serif); font-variant-numeric: lining-nums; color: var(--ink); background: var(--paper); border: 2px solid transparent; border-radius: 0; padding: 12px 14px; width: 100%;
+  font: 400 1.05rem/1.2 var(--sans); color: var(--white); background: transparent; color-scheme: dark; border: 0; border-bottom: 1px solid rgba(244, 243, 239, .4); border-radius: 0; padding: 10px 0; width: 100%;
 }
-input:user-invalid { border-color: #F2B8C3; }
-.err { min-height: 1.3em; font-size: .92rem; color: #F2B8C3; margin-top: 4px; }
-.btn { justify-self: start; font: 400 .85rem/1 var(--serif); text-transform: uppercase; letter-spacing: .2em; padding: 17px 28px; border: 0; background: var(--red); color: #fff; cursor: pointer; transition: background .2s; }
-.btn:hover { background: #87291E; }
-.demo { font-size: .88rem; opacity: .65; }
-.done { border: 1px solid rgba(241, 242, 238, .35); padding: 32px; }
+input:focus-visible { outline: none; border-bottom-color: var(--white); }
+input:user-invalid { border-bottom-color: #F2A99A; }
+.err { min-height: 1.3em; font-size: .85rem; color: #F2A99A; margin-top: 4px; }
+.submit { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+.btn { padding: 15px 26px; font-size: .9rem; }
+.demo { font-size: .8rem; color: var(--grey); max-width: 28em; }
+.done { grid-column: 1 / -1; padding: 40px 0; border-top: 1px solid rgba(244, 243, 239, .25); }
 .done:focus { outline: none; }
-.done h3 { font: 400 1.9rem/1.1 var(--display); margin-bottom: 12px; }
+.done h3 { font: 400 clamp(2rem, 4vw, 3.2rem)/1 var(--sans); letter-spacing: -.03em; margin-bottom: 14px; }
 
-footer { background: var(--night); color: rgba(241, 242, 238, .7); border-top: 1px solid rgba(241, 242, 238, .12); padding-block: 56px 64px; text-align: center; font-size: .9rem; }
-footer .caps { font-size: 1.4rem; color: var(--paper); margin-bottom: 14px; }
-footer p + p { margin-top: 6px; }
-footer details { margin: 22px auto 0; max-width: 46rem; }
-footer summary { cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
-footer ul { list-style: none; padding: 0; margin-top: 12px; line-height: 1.6; }
+footer { padding-top: clamp(70px, 8vw, 110px); }
+.links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.links h2 { font: 500 1rem/1.3 var(--sans); margin-bottom: 8px; }
+.links p { color: var(--grey); font-size: .9rem; max-width: 22em; margin-bottom: 16px; }
+footer .mark { margin-block: clamp(70px, 9vw, 130px) 18px; }
+.legal { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-block: 24px 40px; border-top: 1px solid rgba(244, 243, 239, .14); font-size: .78rem; color: var(--grey); }
+.legal details { max-width: 46rem; }
+.legal summary { cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
+.legal ul { list-style: none; padding: 0; margin-top: 10px; line-height: 1.7; }
+.legal a { text-decoration: underline; text-underline-offset: .2em; }
 
-@media (prefers-reduced-motion: reduce) { .hero img, .masthead { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero img, .hero .mark { animation: none; }
+  .manifesto .w { color: var(--white); transition: none; }
+}
 @media (max-width: 900px) {
-  .visit-grid, .vy-grid { grid-template-columns: 1fr; }
-  .wine-list { grid-template-columns: 1fr; }
-  .print, .print.left { float: none; width: auto; max-width: 420px; margin: 0 auto 2em; }
-  .print img { width: 100%; max-height: 55svh; object-fit: cover; }
+  .bar nav { display: none; }
+  .split, .head, .vy-grid, form, .links { grid-template-columns: 1fr; }
+  .split figure { min-height: 70svh; order: -1; }
+  .split .body { margin-left: 0; }
+  .head p { justify-self: start; }
+  .visit .split figure { order: 0; }
+  /* panels taller than the screen would hide their bottom under the next one, so no stacking here */
+  .wine { position: static; grid-template-columns: 1fr; justify-items: start; min-height: auto; padding-block: 80px; }
 }
 @media (max-width: 520px) {
-  .masthead nav a { font-size: .72rem; letter-spacing: .16em; }
+  .hero-foot { flex-direction: column; align-items: start; }
   .map .tag { font-size: 19px; }
   .map .note { font-size: 24px; }
-  .glass { width: 84px; height: 140px; }
-  .wine { gap: 0 16px; }
-  .wine h3 { font-size: 1.45rem; }
   .row { grid-template-columns: 1fr; }
-  .col p { text-align: left; }
+  .legal { flex-direction: column; }
 }
 </style>
 </head>
@@ -199,65 +208,61 @@ footer ul { list-style: none; padding: 0; margin-top: 12px; line-height: 1.6; }
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="bar">
-  <a class="home caps" href="#top">Tablecloth</a>
-  <a class="book" href="#visit">Book a tasting</a>
+  <a class="home" href="#top">OOST</a>
+  <nav aria-label="Main" class="label">
+    <a href="#story">Story</a>
+    <a href="#day">The cloud</a>
+    <a href="#vineyard">Vineyard</a>
+    <a href="#wines">Wines</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <a class="pill" href="#booking">Book a tasting</a>
 </div>
 
 <main id="main">
   <header class="hero" id="top">
     <img src="img/hero-2400.jpg" srcset="img/hero-1200.jpg 1200w, img/hero-2400.jpg 2400w" sizes="100vw" fetchpriority="high"
-      alt="The tablecloth cloud pouring down the face of Table Mountain, above fynbos on the lower slopes">
-    <div class="masthead">
-      <h1 class="caps">Tablecloth</h1>
-      <nav aria-label="Main">
-        <a href="#story">Story</a>
-        <a href="#cloud">The cloud</a>
-        <a href="#vineyard">Vineyard</a>
-        <a href="#wines">Wines</a>
-        <a href="#visit">Visit</a>
-      </nav>
+      alt="The tablecloth cloud pouring down the face of Table Mountain at dusk, above fynbos on the lower slopes">
+    <div class="hero-top pad">
+      <h1 class="mark"><span class="sr">OOST</span><span aria-hidden="true">O</span><span aria-hidden="true">O</span><span aria-hidden="true">S</span><span aria-hidden="true">T</span></h1>
+      <p class="place label">CONSTANTIA&nbsp;&nbsp;CAPE TOWN</p>
+    </div>
+    <div class="hero-foot pad">
+      <p>Cool-climate wine from the cold side of Table Mountain.</p>
+      <a class="pill" href="#wines">Our wines</a>
     </div>
   </header>
 
-  <section class="prologue" id="story" aria-labelledby="storyTitle">
-    <div class="col">
-      <h2 id="storyTitle">The farm on the cold side of the mountain</h2>
-      <p>Tablecloth is a family wine farm in Constantia, on the far side of Table Mountain from the city. Vines have grown on this slope since 1891. Most summer afternoons the south-easter drags a cloud over the top of the mountain, and Capetonians call it the tablecloth. From town it looks like a postcard. From our rows it is a cold front that arrives at about two o'clock and stays until dark.</p>
-      <p>That cloud is the reason we exist. It keeps the vineyard around seven degrees cooler than the city, so the grapes ripen slowly and keep their acidity in a place that should be too hot for them. We grow 34 hectares, pick by hand at dawn, make about 60,000 bottles a year in the cellar at the bottom of the slope, and pour them at the cellar door six days a week.</p>
-      <p class="signature" aria-label="Signed, Anna, winemaker">Anna<small>Winemaker</small></p>
-      <ol class="chapters caps">
-        <li><a href="#cloud"><span>I.</span>The cloud</a></li>
-        <li><a href="#vineyard"><span>II.</span>The slope</a></li>
-        <li><a href="#wines"><span>III.</span>The wines</a></li>
-        <li><a href="#visit"><span>IV.</span>The cellar door</a></li>
-      </ol>
-    </div>
+  <section class="manifesto pad" aria-label="About OOST">
+    <p id="manifesto">OOST is named for the south-easter. Every summer afternoon it drags a cloud over Table Mountain and pours it down onto our vines, and the rows stay seven degrees cooler than the city on the other side.</p>
+    <a class="pill" href="#story">Our story</a>
   </section>
 
-  <section class="chapter" id="cloud" aria-labelledby="cloudTitle">
-    <div class="col">
-      <h2 class="caps" id="cloudTitle"><span class="num">I.</span>The cloud</h2>
-      <p class="sub">Why our side of the mountain stays cool</p>
-      <figure class="print">
-        <img src="img/pour-1000.jpg" srcset="img/pour-600.jpg 600w, img/pour-1000.jpg 1000w" sizes="(max-width: 900px) 90vw, 300px" loading="lazy" width="1000" height="1500"
-          alt="Cloud spilling over a cliff edge on Table Mountain">
-        <figcaption>The south-easter pouring cloud off the table.</figcaption>
-      </figure>
-      <p>The south-easter blows across False Bay in summer and picks up moisture on the way. When it hits Table Mountain it is pushed up the slopes, cools, and condenses into a flat white cloud that sits on the summit. Then it spills over the edge and pours down the other side, evaporating as it sinks into warmer air.</p>
-      <p>Constantia lies in the lee of that pour. While the City Bowl bakes at thirty degrees, our rows sit under cloud and wind. The grapes keep their freshness, and the wines taste of a cooler place than a map of Africa would suggest.</p>
-      <p>Scroll through a February day below to watch the two sides of the mountain pull apart.</p>
+  <section class="split" id="story" aria-labelledby="storyTitle">
+    <div class="pad">
+      <h2 id="storyTitle">A family farm on the cold side of the mountain since 1891.</h2>
+      <div class="body">
+        <p>Capetonians call the cloud the tablecloth. From town it looks like a postcard. From our rows it's a cold front that arrives at about two o'clock and stays until dark.</p>
+        <p>It's the reason we exist. The grapes ripen slowly and keep their acidity in a place that should be too hot for them. We grow 34 hectares, pick by hand at dawn, and make about 60,000 bottles a year in the cellar at the bottom of the slope.</p>
+        <p>Anna Visser, winemaker</p>
+      </div>
     </div>
+    <figure>
+      <img src="img/pour-1000.jpg" srcset="img/pour-600.jpg 600w, img/pour-1000.jpg 1000w" sizes="(max-width: 900px) 100vw, 50vw" loading="lazy"
+        alt="Cloud spilling over a cliff edge on Table Mountain">
+      <figcaption class="label">The south-easter pouring cloud off the table</figcaption>
+    </figure>
   </section>
 
   <section class="day" id="day" aria-labelledby="dayTitle">
     <img src="img/peaks-2400.jpg" srcset="img/peaks-1200.jpg 1200w, img/peaks-2400.jpg 2400w" sizes="100vw" loading="lazy" alt="">
     <div class="tint" aria-hidden="true"></div>
     <div class="day-inner">
-      <h2 id="dayTitle">A February day in town and in our vineyard</h2>
-      <p class="clock" aria-live="off"><span id="clock">06:00</span></p>
+      <h2 id="dayTitle" class="label">A February day, in town and in our vineyard</h2>
+      <p class="clock" id="clock" aria-live="off">06:00</p>
       <div class="temps">
-        <div class="temp"><span>City Bowl</span><b id="tCity">19&deg;</b><i id="bCity"></i></div>
-        <div class="temp vineyard"><span>Our rows</span><b id="tVine">18&deg;</b><i id="bVine"></i></div>
+        <div class="temp"><span class="label">City Bowl</span><b id="tCity">19&deg;</b><i id="bCity"></i></div>
+        <div class="temp vineyard"><span class="label">Our rows</span><b id="tVine">18&deg;</b><i id="bVine"></i></div>
       </div>
       <ol class="beats" id="beats">
         <li data-h="6"><time>06:00</time>Mist in the low rows. Picking starts by headlamp.</li>
@@ -269,112 +274,126 @@ footer ul { list-style: none; padding: 0; margin-top: 12px; line-height: 1.6; }
     </div>
   </section>
 
-  <div class="band"><img src="img/vineyards-2400.jpg" srcset="img/vineyards-1200.jpg 1200w, img/vineyards-2400.jpg 2400w" sizes="100vw" loading="lazy"
-    alt="Vineyards in the Constantia valley under a cloudy sky, with the mountains of the Cape Peninsula behind"></div>
-
-  <section class="chapter" id="vineyard" aria-labelledby="vineyardTitle">
-    <div class="col">
-      <h2 class="caps" id="vineyardTitle"><span class="num">II.</span>The slope</h2>
-      <p class="sub">Five blocks, one cellar</p>
-      <figure class="print left">
-        <img src="img/fog-1000.jpg" srcset="img/fog-600.jpg 600w, img/fog-1000.jpg 1000w" sizes="(max-width: 900px) 90vw, 300px" loading="lazy" width="1000" height="750"
-          alt="Rows of vines disappearing into morning fog">
-        <figcaption>Morning fog in the vines.</figcaption>
-      </figure>
-      <p>We don't buy in grapes. Every bottle comes from 34 hectares on the slope below the mountain, split into five blocks that each make their own wine. The highest rows sit under the cloud most summer afternoons. The lowest catch more sun and give us riper fruit to blend with.</p>
-      <p>Each block is picked on the day it tastes ready, by hand and at dawn, then driven a few hundred metres down the farm tracks to the cellar. Scroll the map to watch a harvest come in, or pick a block to read about it.</p>
-    </div>
-    <div class="wide vy-grid">
-      <figure class="map">
-        <svg id="estateMap" viewBox="0 0 800 520" role="img" aria-labelledby="mapDesc">
-          <title id="mapDesc">Map of the estate: five vineyard blocks on the slope below Table Mountain, with farm tracks running down to the cellar.</title>
-          <defs><filter id="mapCloud" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="10"/></filter></defs>
-          <path d="M0 0 H800 V92 L712 108 L640 84 L560 96 L250 90 L180 62 L110 98 L0 84Z" fill="#8A9296"/>
-          <path d="M0 0 H800 V58 L712 72 L640 52 L560 62 L250 56 L180 30 L110 64 L0 52Z" fill="#6C7478"/>
-          <text class="tag" x="22" y="34" style="fill:#F1F2EE;stroke:none">Table Mountain</text>
-          <g filter="url(#mapCloud)" fill="#fff" opacity=".85"><ellipse cx="400" cy="96" rx="430" ry="34"/><ellipse cx="420" cy="140" rx="300" ry="26" opacity=".6"/></g>
-          <line x1="20" y1="206" x2="780" y2="206" stroke="#8A9296" stroke-width="1.5" stroke-dasharray="6 6"/>
-          <line x1="22" y1="500" x2="58" y2="500" stroke="#8A9296" stroke-width="1.5" stroke-dasharray="6 6"/>
-          <text class="note" x="66" y="505">where the cloud usually stops</text>
-          <g id="lanes"></g>
-          <g id="blocks"></g>
-          <g id="crates"></g>
-          <g transform="translate(398 452)">
-            <rect x="0" y="12" width="64" height="38" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
-            <path d="M-6 14 L32 -8 L70 14Z" fill="#5E6569" stroke="var(--ink)" stroke-width="1.5"/>
-            <rect x="26" y="28" width="12" height="22" fill="var(--ink)"/>
-          </g>
-          <text class="tag" x="476" y="492">Cellar</text>
-        </svg>
-        <figcaption><b id="tonnes">0</b> tonnes of grapes in the cellar this harvest</figcaption>
-      </figure>
-      <div class="block-info">
-        <div class="block-list" role="group" aria-label="Vineyard blocks"></div>
-        <div id="blockInfo" aria-live="polite"></div>
+  <section class="estate" id="vineyard" aria-labelledby="vineyardTitle">
+    <div class="pad">
+      <div class="head">
+        <h2 id="vineyardTitle">Five blocks,<br>one cellar.</h2>
+        <p>We don't buy in grapes. Each block is picked by hand on the day it tastes ready, then driven a few hundred metres down the farm tracks to the cellar. Scroll to watch a harvest come in, or pick a block.</p>
+      </div>
+      <div class="vy-grid">
+        <figure class="map">
+          <svg id="estateMap" viewBox="0 0 800 520" role="img" aria-labelledby="mapDesc">
+            <title id="mapDesc">Map of the estate: five vineyard blocks on the slope below Table Mountain, with farm tracks running down to the cellar.</title>
+            <defs><filter id="mapCloud" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="10"/></filter></defs>
+            <path d="M0 0 H800 V92 L712 108 L640 84 L560 96 L250 90 L180 62 L110 98 L0 84Z" fill="#8A9296"/>
+            <path d="M0 0 H800 V58 L712 72 L640 52 L560 62 L250 56 L180 30 L110 64 L0 52Z" fill="#6C7478"/>
+            <text class="tag" x="22" y="34" style="fill:#F7F6F2;stroke:none">Table Mountain</text>
+            <g filter="url(#mapCloud)" fill="#fff" opacity=".85"><ellipse cx="400" cy="96" rx="430" ry="34"/><ellipse cx="420" cy="140" rx="300" ry="26" opacity=".6"/></g>
+            <line x1="20" y1="206" x2="780" y2="206" stroke="#8A9296" stroke-width="1.5" stroke-dasharray="6 6"/>
+            <line x1="22" y1="500" x2="58" y2="500" stroke="#8A9296" stroke-width="1.5" stroke-dasharray="6 6"/>
+            <text class="note" x="66" y="505">where the cloud usually stops</text>
+            <g id="lanes"></g>
+            <g id="blocks"></g>
+            <g id="crates"></g>
+            <g transform="translate(398 452)">
+              <rect x="0" y="12" width="64" height="38" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+              <path d="M-6 14 L32 -8 L70 14Z" fill="#5E6569" stroke="var(--ink)" stroke-width="1.5"/>
+              <rect x="26" y="28" width="12" height="22" fill="var(--ink)"/>
+            </g>
+            <text class="tag" x="476" y="492">Cellar</text>
+          </svg>
+          <figcaption><b id="tonnes">0</b><span>tonnes of grapes in the cellar this harvest</span></figcaption>
+        </figure>
+        <div class="block-info">
+          <div class="block-list" role="group" aria-label="Vineyard blocks"></div>
+          <div id="blockInfo" aria-live="polite"></div>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="band"><img src="img/nek-2400.jpg" srcset="img/nek-1200.jpg 1200w, img/nek-2400.jpg 2400w" sizes="100vw" loading="lazy"
-    alt="Fynbos along a footpath above the Constantia valley"></div>
+    alt="Fynbos along a footpath above the Constantia valley in evening light"></div>
 
-  <section class="chapter" id="wines" aria-labelledby="winesTitle">
-    <div class="col">
-      <h2 class="caps" id="winesTitle"><span class="num">III.</span>The wines</h2>
-      <p class="sub">Four small runs, all from our own vines</p>
-      <p>We make four wines, one from each part of the slope. They are poured at the cellar door and sold there. Hold a glass to pour it.</p>
+  <section id="wines" aria-labelledby="winesTitle">
+    <div class="wines-intro pad">
+      <div class="head">
+        <h2 id="winesTitle">Four wines,<br>four parts of the slope.</h2>
+        <p>Small runs, all from our own vines, poured and sold at the cellar door. Hold a glass to pour it.</p>
+      </div>
     </div>
-    <ul class="wide wine-list">
-      <li class="wine" style="--wine:#E5DE93">
+    <ul class="wine-list">
+      <li class="wine pad" style="--bg:#5F6B63;--wine:#E5DE93">
+        <div class="wine-text">
+          <p class="label">Sauvignon blanc 2025</p>
+          <h3>Southeaster</h3>
+          <p class="notes">Picked on cloud days only. Green fig, wet stone and a sharp finish that wakes you up.</p>
+          <p class="price label">R210</p>
+        </div>
         <button class="pour" type="button"></button>
-        <div class="wine-name"><h3>Southeaster</h3><p class="price">R210</p></div>
-        <p class="kind">Sauvignon blanc, 2025</p>
-        <p>Picked on cloud days only. Green fig, wet stone and a sharp finish that wakes you up.</p>
       </li>
-      <li class="wine" style="--wine:#D9C27A">
+      <li class="wine pad" style="--bg:#353D44;--wine:#D9C27A">
+        <div class="wine-text">
+          <p class="label">S&eacute;millon 2023</p>
+          <h3>Fog Line</h3>
+          <p class="notes">From the 1950s block right where the cloud stops. Waxy lemon, beeswax and a long, quiet finish.</p>
+          <p class="price label">R340</p>
+        </div>
         <button class="pour" type="button"></button>
-        <div class="wine-name"><h3>Fog Line</h3><p class="price">R340</p></div>
-        <p class="kind">S&eacute;millon, 2023</p>
-        <p>From the 1950s block right where the cloud stops. Waxy lemon, beeswax and a long, quiet finish.</p>
       </li>
-      <li class="wine" style="--wine:#8E2F3C">
+      <li class="wine pad" style="--bg:#A65A3F;--wine:#5E1626">
+        <div class="wine-text">
+          <p class="label">Pinot noir 2024</p>
+          <h3>Back Table</h3>
+          <p class="notes">Grown on the steep south slope that sees the least sun. Sour cherry, fynbos and soft tannins.</p>
+          <p class="price label">R395</p>
+        </div>
         <button class="pour" type="button"></button>
-        <div class="wine-name"><h3>Back Table</h3><p class="price">R395</p></div>
-        <p class="kind">Pinot noir, 2024</p>
-        <p>Grown on the steep south slope that sees the least sun. Sour cherry, fynbos and soft tannins.</p>
       </li>
-      <li class="wine" style="--wine:#C8892E">
+      <li class="wine pad" style="--bg:#262320;--wine:#C8892E">
+        <div class="wine-text">
+          <p class="label">Natural sweet Muscat 2021, 375&nbsp;ml</p>
+          <h3>St Helena</h3>
+          <p class="notes">Named for the island where Napoleon kept asking for Constantia wine. Apricot, orange peel and honey.</p>
+          <p class="price label">R620</p>
+        </div>
         <button class="pour" type="button"></button>
-        <div class="wine-name"><h3>St Helena</h3><p class="price">R620</p></div>
-        <p class="kind">Natural sweet Muscat, 2021, 375&nbsp;ml</p>
-        <p>Named for the island where Napoleon kept asking for Constantia wine. Apricot, orange peel and honey.</p>
       </li>
     </ul>
   </section>
 
-  <div class="band"><img src="img/cellar-2400.jpg" srcset="img/cellar-1200.jpg 1200w, img/cellar-2400.jpg 2400w" sizes="100vw" loading="lazy"
-    alt="Old oak barrels stacked under a brick vault"></div>
-
   <section class="visit" id="visit" aria-labelledby="visitTitle">
-    <div class="wide visit-grid">
-      <div>
-        <h2 class="caps" id="visitTitle"><span class="num">IV.</span>The cellar door</h2>
-        <p class="sub">Book a tasting</p>
-        <p>Twenty-five minutes from the city, on the cool side of the mountain. Book ahead on weekends, and bring a jersey if the tablecloth is on.</p>
-        <dl class="hours">
-          <dt>Tue&ndash;Sun</dt><dd>10:00 to 17:00</dd>
-          <dt>Mondays</dt><dd>Closed, the vines need us</dd>
-          <dt>Find us</dt><dd>Tafelkleed Lane, Constantia, Cape Town</dd>
-        </dl>
+    <div class="split">
+      <div class="pad">
+        <h2 id="visitTitle">Visit us twenty-five minutes from the city, on the cool side of the mountain.</h2>
+        <div class="body">
+          <dl class="hours">
+            <dt>Tue&ndash;Sun</dt><dd>10:00 to 17:00</dd>
+            <dt>Mondays</dt><dd>Closed, the vines need us</dd>
+            <dt>Find us</dt><dd>Tafelkleed Lane, Constantia, Cape Town</dd>
+          </dl>
+          <p style="margin-top:1.4em">Book ahead on weekends, and bring a jersey if the cloud is on the mountain.</p>
+        </div>
       </div>
-      <div id="bookingArea">
-        <form id="booking" novalidate>
-          <fieldset>
-            <legend>Choose a tasting</legend>
-            <label class="option"><input type="radio" name="tasting" value="Cellar tasting" required checked><span><strong>Cellar tasting</strong>All four wines, 45 minutes</span><em>R180</em></label>
-            <label class="option"><input type="radio" name="tasting" value="Under the cloud walk"><span><strong>Under the cloud walk</strong>Vineyard walk with the winemaker, then the tasting</span><em>R420</em></label>
-            <label class="option"><input type="radio" name="tasting" value="Long table lunch"><span><strong>Long table lunch</strong>Three courses between the rows, wine paired</span><em>R890</em></label>
-          </fieldset>
+      <figure>
+        <img src="img/vineyards-2400.jpg" srcset="img/vineyards-1200.jpg 1200w, img/vineyards-2400.jpg 2400w" sizes="(max-width: 900px) 100vw, 50vw" loading="lazy"
+          alt="Vineyards in the Constantia valley under a big sky, with False Bay and the mountains of the Cape Peninsula behind">
+      </figure>
+    </div>
+
+    <div class="booking pad" id="bookingArea">
+      <div class="head">
+        <h2>Book a tasting.</h2>
+        <p>Tastings run every hour from 10:00. Groups larger than twelve, call the cellar.</p>
+      </div>
+      <form id="booking" novalidate>
+        <fieldset>
+          <legend>Choose a tasting</legend>
+          <label class="option"><input type="radio" name="tasting" value="Cellar tasting" required checked><span><strong>Cellar tasting</strong>All four wines, 45 minutes</span><em>R180</em></label>
+          <label class="option"><input type="radio" name="tasting" value="Under the cloud walk"><span><strong>Under the cloud walk</strong>Vineyard walk with the winemaker, then the tasting</span><em>R420</em></label>
+          <label class="option"><input type="radio" name="tasting" value="Long table lunch"><span><strong>Long table lunch</strong>Three courses between the rows, wine paired</span><em>R890</em></label>
+        </fieldset>
+        <div class="fields">
           <div class="row">
             <div class="field"><label for="date">Date</label><input type="date" id="date" name="date" required aria-describedby="dateErr"><p class="err" id="dateErr" aria-live="polite"></p></div>
             <div class="field"><label for="guests">Guests</label><input type="number" id="guests" name="guests" min="1" max="12" value="2" required inputmode="numeric" aria-describedby="guestsErr"><p class="err" id="guestsErr" aria-live="polite"></p></div>
@@ -383,19 +402,25 @@ footer ul { list-style: none; padding: 0; margin-top: 12px; line-height: 1.6; }
             <div class="field"><label for="name">Name</label><input type="text" id="name" name="name" autocomplete="name" required aria-describedby="nameErr"><p class="err" id="nameErr" aria-live="polite"></p></div>
             <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required aria-describedby="emailErr"><p class="err" id="emailErr" aria-live="polite"></p></div>
           </div>
-          <button class="btn" type="submit">Book tasting</button>
-          <p class="demo">Tablecloth is a fictional estate. Booking runs in your browser only and nothing is sent.</p>
-        </form>
-      </div>
+          <div class="submit">
+            <button class="pill btn" type="submit">Book tasting</button>
+            <p class="demo">OOST is a fictional estate. Booking runs in your browser only and nothing is sent.</p>
+          </div>
+        </div>
+      </form>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wide">
-    <p class="caps">Tablecloth</p>
-    <p>Tafelkleed Lane, Constantia, Cape Town. A fictional estate made for a portfolio.</p>
-    <p>Please enjoy responsibly. Not for sale to persons under 18.</p>
+<footer class="pad">
+  <div class="links">
+    <div><h2>Our wines</h2><p>Four small runs from 34 hectares in Constantia.</p><a class="pill" href="#wines">See the wines</a></div>
+    <div><h2>Join the list</h2><p>One email a year, when the new vintage is ready to pour.</p><a class="pill" href="#booking">Book instead</a></div>
+    <div><h2>Visit us</h2><p>Tuesday to Sunday, 10:00 to 17:00, on Tafelkleed Lane.</p><a class="pill" href="#visit">Plan a visit</a></div>
+  </div>
+  <p class="mark" aria-hidden="true"><span>O</span><span>O</span><span>S</span><span>T</span></p>
+  <div class="legal">
+    <p>OOST, Tafelkleed Lane, Constantia, Cape Town. A fictional estate made for a portfolio. Not for sale to persons under 18.</p>
     <details>
       <summary>Photographs</summary>
       <ul>
@@ -403,10 +428,8 @@ footer ul { list-style: none; padding: 0; margin-top: 12px; line-height: 1.6; }
         <li><a href="https://commons.wikimedia.org/wiki/File:Table_Mountain_clouds.jpg">Cloud around the peaks</a> by Selsong, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></li>
         <li><a href="https://commons.wikimedia.org/wiki/File:Clouds_in_table_mountain_(14584234627).jpg">Cloud pouring off the table</a> by David Rosen from London, UK, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></li>
         <li><a href="https://commons.wikimedia.org/wiki/File:Constantia_vineyards.jpg">Constantia vineyards</a> by Barry haynes, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
-        <li><a href="https://commons.wikimedia.org/wiki/File:Early_morning_fog_in_Nebbiolo_vineyard.jpg">Morning fog in a vineyard</a> by Blue moon in her eyes, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></li>
-        <li><a href="https://commons.wikimedia.org/wiki/File:Old_Wine_Barrels.jpg">Old wine barrels</a> by Eric Kilby, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></li>
         <li><a href="https://commons.wikimedia.org/wiki/File:Walking_up_Constantia_Nek.jpg">Constantia Nek</a> by Michael Rowe, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
-        <li>All photographs from Wikimedia Commons, cropped and toned to monochrome. The toned versions are shared under the same licences.</li>
+        <li>All from Wikimedia Commons, resized only.</li>
       </ul>
     </details>
   </div>
@@ -438,9 +461,16 @@ if (!reduced && window.Lenis) {
   }));
 }
 
-// slim bar appears once the masthead has gone
+// bar turns solid once the hero has gone
 const bar = document.querySelector('.bar');
-ScrollTrigger.create({ trigger: '.hero', start: 'bottom 60px', onEnter: () => bar.classList.add('show'), onLeaveBack: () => bar.classList.remove('show') });
+ScrollTrigger.create({ trigger: '.hero', start: 'bottom 60px', onEnter: () => bar.classList.add('solid'), onLeaveBack: () => bar.classList.remove('solid') });
+
+// ---------- manifesto: words light up with scroll ----------
+const manifesto = document.getElementById('manifesto');
+manifesto.innerHTML = manifesto.textContent.split(' ').map(w => `<span class="w">${w}</span>`).join(' ');
+const words = [...manifesto.querySelectorAll('.w')];
+if (!reduced) ScrollTrigger.create({ trigger: manifesto, start: 'top 80%', end: 'bottom 45%', scrub: true,
+  onUpdate: s => words.forEach((w, i) => w.classList.toggle('on', i < s.progress * words.length)) });
 
 // ---------- a February day ----------
 const CITY = [19,21,23,25,27,28,30,31,31,31,30,28,26,24,22];
@@ -453,7 +483,7 @@ const bCity = document.getElementById('bCity'), bVine = document.getElementById(
 const beats = [...document.querySelectorAll('#beats li')];
 function setHour(h) {
   const hh = Math.floor(h), mm = Math.floor((h - hh) * 60 / 10) * 10;
-  clockEl.innerHTML = [...String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0')].map(c => `<i>${c}</i>`).join('');
+  clockEl.textContent = String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0');
   const c = at(CITY, h), v = at(VINE, h);
   tCity.textContent = Math.round(c) + '°'; tVine.textContent = Math.round(v) + '°';
   bCity.style.setProperty('--t', (c - 12) / 22); bVine.style.setProperty('--t', (v - 12) / 22);
@@ -614,17 +644,17 @@ form.addEventListener('submit', e => {
   if (bad.length) { bad[0].focus(); return; }
   const when = new Date(dateIn.value + 'T12:00').toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long' });
   const guests = Number(form.guests.value);
-  const area = document.getElementById('bookingArea');
   const done = document.createElement('div');
   done.className = 'done'; done.tabIndex = -1; done.setAttribute('role', 'status');
   const h = document.createElement('h3'); h.textContent = 'Tasting booked';
   const p = document.createElement('p');
-  p.textContent = `${form.tasting.value} for ${guests} ${guests === 1 ? 'guest' : 'guests'} on ${when}. If the tablecloth is on the mountain, bring a jersey.`;
+  p.textContent = `${form.tasting.value} for ${guests} ${guests === 1 ? 'guest' : 'guests'} on ${when}. If the cloud is on the mountain, bring a jersey.`;
   const note = document.createElement('p'); note.className = 'demo'; note.style.marginTop = '14px';
   note.textContent = 'Demo only: no email was sent and nothing was stored.';
   done.append(h, p, note);
-  area.replaceChildren(done); done.focus();
+  form.replaceWith(done); done.focus();
 });
+</script>
 </script>
 </body>
 </html>
